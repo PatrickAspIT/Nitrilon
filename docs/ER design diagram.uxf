@@ -58,8 +58,8 @@ m2=1
     <panel_attributes>EventRatings
 --
 EventRatingId : int {PK}
-EventId : int {FK}
-RatingId : int {FK}</panel_attributes>
+*EventId : int {FK}*
+*RatingId : int {FK}*</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
