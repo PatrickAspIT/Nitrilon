@@ -7,7 +7,11 @@ namespace Nitrilon.DataAccess
     {
         private string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=NitrilonDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
 
-        // DELETE: Delete an event from the database.
+
+        /// <summary>
+        /// DELETE: Delete an event from the database.
+        /// </summary>
+        /// <param name="id"></param>
         public void Delete(int id)
         {
             string sql = $"DELETE FROM Events WHERE EventId = {id}";
@@ -31,7 +35,10 @@ namespace Nitrilon.DataAccess
             return;
         }
 
-        // GET: Get all events from the database.
+        /// <summary>
+        /// GET: Get an event from the database.
+        /// </summary>
+        /// <returns></returns>
         public List<Event> GetAllEvents()
         {
             List<Event> events = new List<Event>();
@@ -78,7 +85,10 @@ namespace Nitrilon.DataAccess
             return events;
         }
 
-        // PUT: Update an event in the database.
+        /// <summary>
+        /// PUT: Update an event in the database.
+        /// </summary>
+        /// <param name="eventToUpdate"></param>
         public void Update(Event eventToUpdate)
         {
             string sql = $"UPDATE Events SET Date = '{eventToUpdate.Date.ToString("yyyy-MM-dd")}', Name = '{eventToUpdate.Name}', Attendees = {eventToUpdate.Attendees}, Description = '{eventToUpdate.Description}' WHERE EventId = {eventToUpdate.Id}";
@@ -102,7 +112,11 @@ namespace Nitrilon.DataAccess
             return;
         }
 
-        // POST: Save new event to the database.
+        /// <summary>
+        /// POST: Save new event to the database.
+        /// </summary>
+        /// <param name="newEvent"></param>
+        /// <returns></returns>
         public int Save(Event newEvent)
         {
             // TODO: handle attendees when the event is not yet over.
