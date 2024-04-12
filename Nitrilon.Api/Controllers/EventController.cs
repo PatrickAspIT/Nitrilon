@@ -20,6 +20,8 @@ namespace Nitrilon.Api.Controllers
         [HttpPut]
         public IActionResult Put(Event eventToUpdate)
         {
+            Repository repository = new();
+            repository.Update(eventToUpdate);
             return Ok();
         }
 

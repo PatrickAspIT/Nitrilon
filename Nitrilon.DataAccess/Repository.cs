@@ -78,6 +78,30 @@ namespace Nitrilon.DataAccess
             return events;
         }
 
+        // PUT: Update an event in the database.
+        public void Update(Event eventToUpdate)
+        {
+            string sql = $"UPDATE Events SET Date = '{eventToUpdate.Date.ToString("yyyy-MM-dd")}', Name = '{eventToUpdate.Name}', Attendees = {eventToUpdate.Attendees}, Description = '{eventToUpdate.Description}' WHERE EventId = {eventToUpdate.Id}";
+
+            // 1: Make a sqlConnection object:
+            SqlConnection connection = new SqlConnection(connectionString);
+
+            // 2: Make a sqlCommand object:
+            SqlCommand command = new SqlCommand(sql, connection);
+
+            // TODO: try catchify this:
+            // 3: Open the connection:
+            connection.Open();
+
+            // 4: Execute the update command:
+            command.ExecuteNonQuery();
+
+            // 5: Close the connection when it is not needed anymore:
+            connection.Close();
+
+            return;
+        }
+
         // POST: Save new event to the database.
         public int Save(Event newEvent)
         {
