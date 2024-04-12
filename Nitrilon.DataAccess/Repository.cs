@@ -7,6 +7,7 @@ namespace Nitrilon.DataAccess
     {
         private string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=NitrilonDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
 
+        //---------------------------------Event-----------------------------------------
 
         /// <summary>
         /// DELETE: Delete an event from the database.
@@ -83,6 +84,11 @@ namespace Nitrilon.DataAccess
             return events;
         }
 
+        /// <summary>
+        /// GET: Get an event from the database.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public Event GetOne(int id)
         {
             string sql = $"SELECT * FROM Events WHERE EventId = {id}";
@@ -175,7 +181,182 @@ namespace Nitrilon.DataAccess
             connection.Open();
 
             // 4: Execute the insert command and ge the newly created id for the row:
-            //command.ExecuteNonQuery();
+            SqlDataReader sqlDataReader = command.ExecuteReader();
+            while(sqlDataReader.Read())
+            {
+                newId = (int)sqlDataReader.GetDecimal(0);
+            }
+
+            // 5: Close the connection when it is not needed anymore:
+            connection.Close();
+
+            return newId;
+        }
+
+        //---------------------------------EventRating-----------------------------------
+
+        /// <summary>
+        /// DELETE: Delete an EventRating from the database.
+        /// </summary>
+        /// <param name="id"></param>
+        public void DeleteEventRating(int id)
+        {
+            string sql = $"DELETE FROM EventRatings WHERE EventRatingId = {id}";
+
+            // 1: Make a sqlConnection object:
+            SqlConnection connection = new SqlConnection(connectionString);
+
+            // 2: Make a sqlCommand object:
+            SqlCommand command = new SqlCommand(sql, connection);
+
+            // 3: Open the connection:
+            connection.Open();
+
+            // 4: Execute the delete command:
+            command.ExecuteNonQuery();
+
+            // 5: Close the connection when it is not needed anymore:
+            connection.Close();
+
+            return;
+        }
+
+        /// <summary>
+        /// GET: Get all EventRatings from the database.
+        /// </summary>
+        /// <returns></returns>
+        public List<EventRating> GetAllEventRatings()
+        {
+            List<EventRating> eventRatings = new List<EventRating>();
+
+            string sql = "SELECT * FROM EventRatings";
+
+            // 1: Make a sqlConnection object:
+            SqlConnection connection = new SqlConnection(connectionString);
+
+            // 2: Make a sqlCommand object:
+            SqlCommand command = new SqlCommand(sql, connection);
+
+            // 3: Open the connection:
+            connection.Open();
+
+            // 4: Execute query:
+            SqlDataReader reader = command.ExecuteReader();
+
+            // 5: Retrieve data form the data reader:
+            while(reader.Read())
+            {
+                int eventRatingId = Convert.ToInt32(reader["EventRatingId"]);
+                int eventId = Convert.ToInt32(reader["EventId"]);
+                int ratingId = Convert.ToInt32(reader["RatingId"]);
+
+                EventRating EventRating = new()
+                {
+                    EventRatingId = eventRatingId,
+                    EventId = eventId,
+                    RatingId = ratingId,
+                };
+
+                eventRatings.Add(EventRating);
+            }
+
+            // 6: Close the connection when it is not needed anymore:
+            connection.Close();
+
+            return eventRatings;
+        }
+
+        /// <summary>
+        /// GET: Get an EventRating from the database.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public EventRating GetOneEventRating(int id)
+        {
+            string sql = $"SELECT * FROM EventRatings WHERE EventRatingId = {id}";
+
+            // 1: Make a sqlConnection object:
+            SqlConnection connection = new SqlConnection(connectionString);
+
+            // 2: Make a sqlCommand object:
+            SqlCommand command = new SqlCommand(sql, connection);
+
+            // 3: Open the connection:
+            connection.Open();
+
+            // 4: Execute query:
+            SqlDataReader reader = command.ExecuteReader();
+
+            // 5: Retrieve data form the data reader:
+            if(reader.Read())
+            {
+                int eventRatingId = Convert.ToInt32(reader["EventRatingId"]);
+                int eventId = Convert.ToInt32(reader["EventId"]);
+                int ratingId = Convert.ToInt32(reader["RatingId"]);
+
+                EventRating EventRating = new()
+                {
+                    EventRatingId = eventRatingId,
+                    EventId = eventId,
+                    RatingId = ratingId,
+                };
+
+                // 6: Close the connection when it is not needed anymore:
+                connection.Close();
+
+                return EventRating;
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// PUT: Update an EventRating in the database.
+        /// </summary>
+        /// <param name="eventRatingToUpdate"></param>
+        public void UpdateEventRating(EventRating eventRatingToUpdate)
+        {
+            string sql = $"UPDATE EventRatings SET EventId = {eventRatingToUpdate.EventId}, RatingId = {eventRatingToUpdate.RatingId} WHERE EventRatingId = {eventRatingToUpdate.EventRatingId}";
+
+            // 1: Make a sqlConnection object:
+            SqlConnection connection = new SqlConnection(connectionString);
+
+            // 2: Make a sqlCommand object:
+            SqlCommand command = new SqlCommand(sql, connection);
+
+            // 3: Open the connection:
+            connection.Open();
+
+            // 4: Execute the update command:
+            command.ExecuteNonQuery();
+
+            // 5: Close the connection when it is not needed anymore:
+            connection.Close();
+
+            return;
+        }
+
+        /// <summary>
+        /// POST: Save new EventRating to the database.
+        /// </summary>
+        /// <param name="newEventRating"></param>
+        /// <returns></returns>
+        public int SaveEventRating(EventRating newEventRating)
+        {
+            int newId = 0;
+
+            string sql = $"INSERT INTO EventRatings (EventId, RatingId) VALUES ({newEventRating.EventId}, {newEventRating.RatingId}); SELECT SCOPE_IDENTITY();";
+
+            // 1: Make a sqlConnection object:
+            SqlConnection connection = new SqlConnection(connectionString);
+
+            // 2: Make a sqlCommand object:
+            SqlCommand command = new SqlCommand(sql, connection);
+            
+            // 3: Open the connection:
+            connection.Open();
+
+            // 4: Execute the insert command and ge the newly created id for the row:
             SqlDataReader sqlDataReader = command.ExecuteReader();
             while(sqlDataReader.Read())
             {

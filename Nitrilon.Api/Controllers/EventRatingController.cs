@@ -1,13 +1,13 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Nitrilon.DataAccess;
 using Nitrilon.Entities;
+
 
 namespace Nitrilon.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class EventController : ControllerBase
+    public class EventRatingController : Controller
     {
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
@@ -15,22 +15,22 @@ namespace Nitrilon.Api.Controllers
             try
             {
                 Repository repository = new();
-                repository.Delete(id);
+                repository.DeleteEventRating(id);
                 return Ok();
             }
             catch (Exception e)
             {
                 return StatusCode(500);
-            }   
+            }
         }
 
         [HttpPut]
-        public IActionResult Put(Event eventToUpdate)
+        public IActionResult Put(EventRating eventRatingToUpdate)
         {
             try
             {
                 Repository repository = new();
-                repository.Update(eventToUpdate);
+                repository.UpdateEventRating(eventRatingToUpdate);
                 return Ok();
             }
             catch (Exception e)
@@ -40,13 +40,13 @@ namespace Nitrilon.Api.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<Event>> GetAll()
+        public ActionResult<IEnumerable<EventRating>> GetAll()
         {
             try
             {
                 Repository repository = new();
-                List<Event> events = repository.GetAllEvents();
-                return events;
+                List<EventRating> eventRatings = repository.GetAllEventRatings();
+                return eventRatings;
             }
             catch (Exception e)
             {
@@ -55,13 +55,13 @@ namespace Nitrilon.Api.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Event> Get(int id)
+        public ActionResult<EventRating> Get(int id)
         {
             try
             {
                 Repository repository = new();
-                Event events = repository.GetOne(id);
-                return events;
+                EventRating eventRating = repository.GetOneEventRating(id);
+                return eventRating;
             }
             catch (Exception e)
             {
@@ -70,15 +70,15 @@ namespace Nitrilon.Api.Controllers
         }
 
         [HttpPost]
-        public IActionResult Add(Event newEvent)
+        public IActionResult Add(EventRating newEventRating)
         {
             try
             {
                 Repository repository = new();
-                int createdId = repository.Save(newEvent);
+                int createdId = repository.SaveEventRating(newEventRating);
                 return Ok(createdId);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return StatusCode(500);
             }
