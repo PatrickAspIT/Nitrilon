@@ -338,6 +338,7 @@ namespace Nitrilon.DataAccess
 
         /// <summary>
         /// POST: Save new EventRating to the database.
+        /// DOSEN'T WORK-----------------------------------------------------------------
         /// </summary>
         /// <param name="newEventRating"></param>
         /// <returns></returns>

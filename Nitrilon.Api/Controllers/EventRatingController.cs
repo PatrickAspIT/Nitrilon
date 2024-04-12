@@ -9,7 +9,7 @@ namespace Nitrilon.Api.Controllers
     [ApiController]
     public class EventRatingController : Controller
     {
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}")] // WORKS
         public IActionResult Delete(int id)
         {
             try
@@ -24,7 +24,7 @@ namespace Nitrilon.Api.Controllers
             }
         }
 
-        [HttpPut]
+        [HttpPut] // WORKS
         public IActionResult Put(EventRating eventRatingToUpdate)
         {
             try
@@ -39,7 +39,7 @@ namespace Nitrilon.Api.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpGet] // WORKS
         public ActionResult<IEnumerable<EventRating>> GetAll()
         {
             try
@@ -54,7 +54,7 @@ namespace Nitrilon.Api.Controllers
             }
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}")] // WORKS
         public ActionResult<EventRating> Get(int id)
         {
             try
@@ -69,7 +69,7 @@ namespace Nitrilon.Api.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpPost] // Dosen't work
         public IActionResult Add(EventRating newEventRating)
         {
             try
