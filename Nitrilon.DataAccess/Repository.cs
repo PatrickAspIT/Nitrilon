@@ -22,7 +22,6 @@ namespace Nitrilon.DataAccess
             // 2: Make a sqlCommand object:
             SqlCommand command = new SqlCommand(sql, connection);
 
-            // TODO: try catchify this:
             // 3: Open the connection:
             connection.Open();
 
@@ -51,7 +50,6 @@ namespace Nitrilon.DataAccess
             // 2: Make a sqlCommand object:
             SqlCommand command = new SqlCommand(sql, connection);
 
-            // TODO: try catchify this:
             // 3: Open the connection:
             connection.Open();
 
@@ -85,6 +83,49 @@ namespace Nitrilon.DataAccess
             return events;
         }
 
+        public Event GetOne(int id)
+        {
+            string sql = $"SELECT * FROM Events WHERE EventId = {id}";
+
+            // 1: Make a sqlConnection object:
+            SqlConnection connection = new SqlConnection(connectionString);
+
+            // 2: Make a sqlCommand object:
+            SqlCommand command = new SqlCommand(sql, connection);
+
+            // 3: Open the connection:
+            connection.Open();
+
+            // 4: Execute query:
+            SqlDataReader reader = command.ExecuteReader();
+
+            // 5: Retrieve data form the data reader:
+            if(reader.Read())
+            {
+                int eventId = Convert.ToInt32(reader["EventId"]);
+                DateTime date = Convert.ToDateTime(reader["Date"]);
+                string name = Convert.ToString(reader["Name"]);
+                int attendees = Convert.ToInt32(reader["Attendees"]);
+                string description = Convert.ToString(reader["Description"]);
+
+                Event e = new()
+                {
+                    Id = eventId,
+                    Date = date,
+                    Name = name,
+                    Attendees = attendees,
+                    Description = description,
+                };
+
+                // 6: Close the connection when it is not needed anymore:
+                connection.Close();
+
+                return e;
+            }
+
+            return null;
+        }
+
         /// <summary>
         /// PUT: Update an event in the database.
         /// </summary>
@@ -99,7 +140,6 @@ namespace Nitrilon.DataAccess
             // 2: Make a sqlCommand object:
             SqlCommand command = new SqlCommand(sql, connection);
 
-            // TODO: try catchify this:
             // 3: Open the connection:
             connection.Open();
 
@@ -119,9 +159,11 @@ namespace Nitrilon.DataAccess
         /// <returns></returns>
         public int Save(Event newEvent)
         {
+            int newId = 0;
+
             // TODO: handle attendees when the event is not yet over.
             // Don't forget to format the date as 'yy-MM-dd'.
-            string sql = $"INSERT INTO Events (Date, Name, Attendees, Description) VALUES ('{newEvent.Date.ToString("yyyy-MM-dd")}', '{newEvent.Name}', {newEvent.Attendees}, '{newEvent.Description}')";
+            string sql = $"INSERT INTO Events (Date, Name, Attendees, Description) VALUES ('{newEvent.Date.ToString("yyyy-MM-dd")}', '{newEvent.Name}', {newEvent.Attendees}, '{newEvent.Description}'); SELECT SCOPE_IDENTITY();";
 
             // 1: Make a sqlConnection object:
             SqlConnection connection = new SqlConnection(connectionString);
@@ -129,18 +171,21 @@ namespace Nitrilon.DataAccess
             // 2: Make a sqlCommand object:
             SqlCommand command = new SqlCommand(sql, connection);
             
-            // TODO: try catchify this:
             // 3: Open the connection:
             connection.Open();
 
-            // TODO: figure out how to get the new id created in the table.
-            // 4: Execute the insert command:
-            command.ExecuteNonQuery();
+            // 4: Execute the insert command and ge the newly created id for the row:
+            //command.ExecuteNonQuery();
+            SqlDataReader sqlDataReader = command.ExecuteReader();
+            while(sqlDataReader.Read())
+            {
+                newId = (int)sqlDataReader.GetDecimal(0);
+            }
 
             // 5: Close the connection when it is not needed anymore:
             connection.Close();
 
-            return -1;
+            return newId;
         }
     }
 }

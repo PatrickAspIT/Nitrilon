@@ -59,17 +59,10 @@ namespace Nitrilon.Api.Controllers
         {
             try
             {
-                Event e = null;
-                if (id == 3)
-                {
-                    e = new() { Id = 3 };
-                }
-                else
-                {
-                    return NotFound($"The requested event with id {id} was not found");
-                }
+                Repository repository = new();
+                Event events = repository.GetOne(id);
 
-                return Ok(e);
+                return events;
             }
             catch (Exception e)
             {
@@ -84,7 +77,7 @@ namespace Nitrilon.Api.Controllers
             {
                 Repository r = new();
                 int createdId = r.Save(newEvent);
-                return Ok();
+                return Ok(createdId);
             }
             catch(Exception e)
             {
