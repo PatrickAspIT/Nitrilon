@@ -12,11 +12,13 @@ namespace Nitrilon.Api.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
+            Repository repository = new();
+            repository.Delete(id);
             return Ok();
         }
 
         [HttpPut]
-        public IActionResult Put(Event eventToUpdatw)
+        public IActionResult Put(Event eventToUpdate)
         {
             return Ok();
         }
