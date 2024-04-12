@@ -12,41 +12,69 @@ namespace Nitrilon.Api.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            Repository repository = new();
-            repository.Delete(id);
-            return Ok();
+            try
+            {
+                Repository repository = new();
+                repository.Delete(id);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500);
+            }   
         }
 
         [HttpPut]
         public IActionResult Put(Event eventToUpdate)
         {
-            Repository repository = new();
-            repository.Update(eventToUpdate);
-            return Ok();
+            try
+            {
+                Repository repository = new();
+                repository.Update(eventToUpdate);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500);
+            }
         }
 
         [HttpGet]
         public ActionResult<IEnumerable<Event>> GetAll()
         {
-            Repository repository = new();
-            List<Event> events = repository.GetAllEvents();
-            return events;
+            try
+            {
+                Repository repository = new();
+                List<Event> events = repository.GetAllEvents();
+                return events;
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500);
+            }
         }
 
         [HttpGet("{id}")]
         public ActionResult<Event> Get(int id)
         {
-            Event e = null;
-            if (id == 3)
+            try
             {
-                e = new() { Id = 3 };
-            }
-            else
-            {
-                return NotFound($"The requested event with id {id} was not found");
-            }
+                Event e = null;
+                if (id == 3)
+                {
+                    e = new() { Id = 3 };
+                }
+                else
+                {
+                    return NotFound($"The requested event with id {id} was not found");
+                }
 
-            return Ok(e);
+                return Ok(e);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500);
+            }
         }
 
         [HttpPost]
