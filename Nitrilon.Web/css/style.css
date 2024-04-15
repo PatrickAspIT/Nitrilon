@@ -1,0 +1,41 @@
+*
+{
+  margin: 0px;
+  padding: 0px;
+}
+
+/* BODY STYLING */
+
+body 
+{
+  height: 100vh;
+}
+
+/* HEADER STYLING */
+
+header 
+{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+header img
+{
+  height: 100px;
+}
+
+/* MAIN STYLING */
+
+#smileySection
+{
+  display: flex;
+  flex-wrap: wrap;
+  width: 100vw;
+  margin-top: calc(40vh - 100px);
+}
+
+#smileySection img 
+{
+  width: calc(100vw / 5);
+}
