@@ -338,33 +338,34 @@ namespace Nitrilon.DataAccess
 
         /// <summary>
         /// POST: Save new EventRating to the database.
-        /// DOSEN'T WORK-----------------------------------------------------------------
         /// </summary>
         /// <param name="newEventRating"></param>
         /// <returns></returns>
-        public int SaveEventRating(EventRating newEventRating)
+        public int SaveEventRating(int eventId, int ratingId)
         {
             int newId = 0;
 
-            string sql = $"INSERT INTO EventRatings (EventId, RatingId) VALUES ({newEventRating.EventId}, {newEventRating.RatingId}); SELECT SCOPE_IDENTITY();";
+            // TODO: handle attendees when the event is not yet over.
+            // Don't forget to format a date as 'yyyy-MM-dd'
+            string sql = $"INSERT INTO EventRatings (EventId, RatingId) VALUES ({eventId},{ratingId});";
 
-            // 1: Make a sqlConnection object:
+            // 1: make a SqlConnection object:
             SqlConnection connection = new SqlConnection(connectionString);
 
-            // 2: Make a sqlCommand object:
+            // 2: make a SqlCommand object:
             SqlCommand command = new SqlCommand(sql, connection);
-            
-            // 3: Open the connection:
+
+            // 3. Open the connection:
             connection.Open();
 
-            // 4: Execute the insert command and ge the newly created id for the row:
+            // 4. Execute the insert command and get the newly created id for the row:
             SqlDataReader sqlDataReader = command.ExecuteReader();
-            while(sqlDataReader.Read())
+            while (sqlDataReader.Read())
             {
                 newId = (int)sqlDataReader.GetDecimal(0);
             }
 
-            // 5: Close the connection when it is not needed anymore:
+            // 5. Close the connection when it is not needed anymore:
             connection.Close();
 
             return newId;

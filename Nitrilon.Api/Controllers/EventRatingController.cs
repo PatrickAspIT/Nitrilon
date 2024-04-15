@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Nitrilon.DataAccess;
 using Nitrilon.Entities;
-
 
 namespace Nitrilon.Api.Controllers
 {
@@ -69,13 +69,13 @@ namespace Nitrilon.Api.Controllers
             }
         }
 
-        [HttpPost] // Dosen't work
-        public IActionResult Add(EventRating newEventRating)
+        [HttpPost]
+        public IActionResult AddEventRating(int eventId, int ratingId)
         {
             try
             {
                 Repository repository = new();
-                int createdId = repository.SaveEventRating(newEventRating);
+                int createdId = repository.SaveEventRating(eventId, ratingId);
                 return Ok(createdId);
             }
             catch (Exception e)
