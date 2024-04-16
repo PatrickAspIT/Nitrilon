@@ -1,8 +1,8 @@
 "use strict";
 
 let eventId = 1;
-let ratingId = 1;
 
+// Get the smileys:
 let greenPressed = document.querySelector("#green");
 let limePressed = document.querySelector("#lime");
 let yellowPressed = document.querySelector("#yellow");
@@ -19,9 +19,9 @@ redPressed.addEventListener("click", sendToServer(5));
 // Function to send the rating to the server:
 function sendToServer(rating)
 {
-    let apiURL = 'https://localhost:7268/api/EventRating?eventId${eventId}=1&ratingId=${ratingId}';
+    let apiURL = 'https://localhost:7268/api/EventRating?eventId={eventId}&ratingId={rating}';
     let requestOptions = {
-      method: 'POST',
+      method: 'GET',
       headers: {
         'Content-Type': 'application/json'
       }
