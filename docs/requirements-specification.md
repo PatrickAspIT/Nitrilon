@@ -9,7 +9,8 @@ Subsystem 03: Rollespilsgrupper
 Aktører:
 * System: Den tablet og webpage som gæsten interagerer med. 
 * Gæst: En person til Nitricon event.
-* Eventansvarlig: den der skal have vist oversigterne over gæsternes bedømmelse.
+* Eventansvarlig: Den der skal have vist oversigterne over gæsternes bedømmelse.
+* Klargøringsansvarlig: Den der klargører devicet til at gæsterne kan rate eventet.
 
 01: En gæst skal kunne bedømme oplevelsen af et event, med valg af én værdi på en skala med tre niveauer.
 
@@ -18,6 +19,12 @@ Aktører:
 03: Systemet skal automatisk klargøre til næste indtastning, efter en indtastning.
 
 04: Den eventansvarlige skal kunne vælge et event for at få vist antallet af bedømmelser i hver bedømmelsesniveau.
+
+05: Den klargøringsansvarlige skal få vist de events der kan vælges, når devicet skal klargøres til brug.
+
+06: De events der skal vises til den klargøringsansvarlige, er igangværende og og fremtidige events.
+
+07: Når den klargøringsansvarlige har valgt et event, skal systemet viderestille til bedømmelsessiden.
 
 # IKKE_FUNKTIONELLE KRAV
 Systemet skal overholde følgende ikke-funktionelle krav:
