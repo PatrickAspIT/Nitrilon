@@ -9,6 +9,23 @@ namespace Nitrilon.Api.Controllers
     [ApiController]
     public class EventController : ControllerBase
     {
+        [HttpGet]
+        [Route("GetActiveorFutureEvents")]
+        public IActionResult GetActiveorFutureEvents()
+        {
+            try
+            {
+                Repository repository = new();
+                string events = repository.GetActiveorFutureEvents();
+                return Ok(events);
+            }
+            catch (ArgumentException e)
+            {
+                Console.WriteLine(e.Message);
+                return NotFound(e);
+            }
+        }
+
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {

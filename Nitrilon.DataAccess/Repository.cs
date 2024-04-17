@@ -228,7 +228,7 @@ namespace Nitrilon.DataAccess
             return newId;
         }
 
-        public string GetActiveorFutureEvents()
+        public string GetActiveOrFutureEvents()
         {
             List<Event> events = new List<Event>();
             string returnValues = "";
