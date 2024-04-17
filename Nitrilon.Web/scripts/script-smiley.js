@@ -19,23 +19,12 @@ redPressed.addEventListener("click", sendToServer(5));
 // Function to send the rating to the server:
 function sendToServer(rating)
 {
-    let apiURL = 'https://localhost:7268/api/EventRating?eventId={eventId}&ratingId={rating}';
-    let requestOptions = {
+  fetch('https://localhost:7268/api/EventRating?eventId=${eventId}&ratingId=${rating}',
+    {
       method: 'GET',
       headers: {
-        'Content-Type': 'application/json'
-      }
-    };
-
-    fetch(apiURL, requestOptions)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      }
-    )
-    .catch(error => {
-      console.error('Error: ', error);
-    })
+        "Content-Type": "application/json",
+      },
+    }
+  );
 }
