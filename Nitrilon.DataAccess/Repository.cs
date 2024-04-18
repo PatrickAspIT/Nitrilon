@@ -75,7 +75,7 @@ namespace Nitrilon.DataAccess
                     int attendees = Convert.ToInt32(reader["Attendees"]);
                     string description = Convert.ToString(reader["Description"]);
 
-                    Event e = new()
+                    Event e = new(id, date, name, attendees, description)
                     {
                         Id = id,
                         Date = date,
@@ -130,7 +130,7 @@ namespace Nitrilon.DataAccess
                     int attendees = Convert.ToInt32(reader["Attendees"]);
                     string description = Convert.ToString(reader["Description"]);
 
-                    Event e = new()
+                    Event e = new(eventId, date, name, attendees, description)
                     {
                         Id = eventId,
                         Date = date,
@@ -254,15 +254,15 @@ namespace Nitrilon.DataAccess
                 if (reader.Read())
                 {
                     int eventId = Convert.ToInt32(reader["EventId"]);
-                    DateTime date = Convert.ToDateTime(reader["Date"]);
+                    DateTime newDate = Convert.ToDateTime(reader["Date"]);
                     string name = Convert.ToString(reader["Name"]);
                     int attendees = Convert.ToInt32(reader["Attendees"]);
                     string description = Convert.ToString(reader["Description"]);
 
-                    Event e = new()
+                    Event e = new(eventId, newDate, name, attendees, description)
                     {
                         Id = eventId,
-                        Date = date,
+                        Date = newDate,
                         Name = name,
                         Attendees = attendees,
                         Description = description,
@@ -277,12 +277,12 @@ namespace Nitrilon.DataAccess
                 // Check what this does:
                 for (int i = 0; i < events.Count; i++)
                 {
-                    ReturnValues += events[i].Id.ToString() + ": ";
-                    ReturnValues += events[i].Name;
-                    ReturnValues += " (" + events[i].Date.ToString("yyyy-MM-dd");
-                    ReturnValues += ") | ";
-
+                    returnValues += events[i].Id.ToString() + ": ";
+                    returnValues += events[i].Name;
+                    returnValues += " (" + events[i].Date.ToString("yyyy-MM-dd");
+                    returnValues += ") | ";
                 }
+            }
             catch (ArgumentException e)
             {
                 throw new Exception(e.Message);
@@ -492,6 +492,11 @@ namespace Nitrilon.DataAccess
             }            
 
             return newId;
+        }
+
+        void M()
+        {
+            Event e = new Event(1, DateTime.Now, "Mads", 1, null);
         }
     }
 }

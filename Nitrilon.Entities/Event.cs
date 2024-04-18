@@ -2,69 +2,92 @@
 {
     public class Event
     {
+        #region Fields
+        public readonly DateTime EarliestPossibleEvent = new DateTime(2018, 01, 01);
+
         private int id;
         private DateTime date;
         private string name;
         private int attendees;
-        private string description;        
+        private string description;
+        #endregion
 
-        public int Id 
+
+        #region Constructors
+        public Event(int id, DateTime date, string name, int attendees, string description)
         {
-            get { return id } 
+            Id = id;
+            Date = date;
+            Name = name;
+            Attendees = attendees;
+            Description = description;
+        }
+        #endregion
+
+        #region Properties
+        public int Id
+        {
+            get => id; // get { return id; }
             set
             {
-                if (value <= 0)
+                ArgumentOutOfRangeException.ThrowIfNegative(value);
+                if (id != value)
                 {
-                    throw new ArgumentException("Id must be greater than 0");
+                    id = value;
                 }
-                id = value;
             }
-        } 
+        }
 
         public DateTime Date
         {
-            get { return date } 
+            get => date; // get { return date; }
             set
             {
-                if (String.IsNullOrWhiteSpace(value.ToString()))
+                ArgumentOutOfRangeException.ThrowIfLessThan(value, EarliestPossibleEvent);
+                if (date != value)
                 {
-                    throw new ArgumentException("Date must be set correctly");
+                    date = value;
                 }
-                date = value;
             }
         }
 
         public string Name
         {
-            get { return name } 
+            get => name; // get { return name; } 
             set
             {
-                if (String.IsNullOrWhiteSpace(value))
+                ArgumentOutOfRangeException.ThrowIfNullOrWhiteSpace(value);
+                if (name != value)
                 {
-                    throw new ArgumentException("Name can't be empty");
+                    name = value;
                 }
-                name = value;
             }
         }
 
         public int Attendees
         {
-            get { return attendees } 
+            get => attendees; // get { return attendees; } 
             set
             {
-                if (value < -1)
+                ArgumentOutOfRangeException.ThrowIfLessThan(value, -1);
+                if (attendees != value)
                 {
-                    throw new ArgumentException("Attendees can't be negative");
+                    attendees = value;
                 }
-                attendees = value;
             }
         }
 
         public string Description
         {
-            get { return description; }
-            set {  description = value; }
+            get => description; // get { return description; } 
+            set
+            {
+                if (description != value)
+                {
+                    description = value;
+                }
+            }
         }
-        
+        #endregion
     }
 }
