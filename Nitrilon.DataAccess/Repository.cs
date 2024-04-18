@@ -9,6 +9,7 @@ namespace Nitrilon.DataAccess
 
         //---------------------------------Event-----------------------------------------
 
+        #region Event Methods
         /// <summary>
         /// DELETE: Delete an event from the database.
         /// </summary>
@@ -75,7 +76,7 @@ namespace Nitrilon.DataAccess
                     int attendees = Convert.ToInt32(reader["Attendees"]);
                     string description = Convert.ToString(reader["Description"]);
 
-                    Event e = new(id, date, name, attendees, description)
+                    Event e = new(id, date, name, attendees, description, null)
                     {
                         Id = id,
                         Date = date,
@@ -93,7 +94,7 @@ namespace Nitrilon.DataAccess
             catch (ArgumentException e)
             {
                 throw new Exception(e.Message);
-            }            
+            }
 
             return events;
         }
@@ -130,7 +131,7 @@ namespace Nitrilon.DataAccess
                     int attendees = Convert.ToInt32(reader["Attendees"]);
                     string description = Convert.ToString(reader["Description"]);
 
-                    Event e = new(eventId, date, name, attendees, description)
+                    Event e = new(eventId, date, name, attendees, description, null)
                     {
                         Id = eventId,
                         Date = date,
@@ -148,7 +149,7 @@ namespace Nitrilon.DataAccess
             catch (ArgumentException e)
             {
                 throw new Exception(e.Message);
-            }            
+            }
 
             return null;
         }
@@ -181,7 +182,7 @@ namespace Nitrilon.DataAccess
             catch (ArgumentException e)
             {
                 throw new Exception(e.Message);
-            }            
+            }
 
             return;
         }
@@ -223,7 +224,7 @@ namespace Nitrilon.DataAccess
             catch (ArgumentException e)
             {
                 throw new Exception(e.Message);
-            }            
+            }
 
             return newId;
         }
@@ -259,7 +260,7 @@ namespace Nitrilon.DataAccess
                     int attendees = Convert.ToInt32(reader["Attendees"]);
                     string description = Convert.ToString(reader["Description"]);
 
-                    Event e = new(eventId, newDate, name, attendees, description)
+                    Event e = new(eventId, newDate, name, attendees, description, null)
                     {
                         Id = eventId,
                         Date = newDate,
@@ -290,9 +291,11 @@ namespace Nitrilon.DataAccess
 
             return returnValues;
         }
+        #endregion
 
         //---------------------------------EventRating-----------------------------------
 
+        #region EventRating Methods
         ///// <summary>
         ///// DELETE: Delete an EventRating from the database.
         ///// </summary>
@@ -367,7 +370,7 @@ namespace Nitrilon.DataAccess
             {
                 throw new Exception(e.Message);
             }
-            
+
             return eventRatings;
         }
 
@@ -417,7 +420,7 @@ namespace Nitrilon.DataAccess
             catch (ArgumentException e)
             {
                 throw new Exception(e.Message);
-            }            
+            }
 
             return null;
         }
@@ -489,14 +492,10 @@ namespace Nitrilon.DataAccess
             catch (ArgumentException e)
             {
                 throw new Exception(e.Message);
-            }            
+            }
 
             return newId;
-        }
-
-        void M()
-        {
-            Event e = new Event(1, DateTime.Now, "Mads", 1, null);
-        }
+        } 
+        #endregion
     }
 }

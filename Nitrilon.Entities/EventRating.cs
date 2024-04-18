@@ -8,13 +8,13 @@
 
         public int EventRatingId
         {
-            get { return eventRatingId }
-            set { eventRatingId = value }
+            get { return eventRatingId; }
+            set { eventRatingId = value; }
         } 
 
         public int EventId
         {
-            get { return eventId }
+            get { return eventId; }
             set
             {
                 if (value <= 0)
@@ -27,7 +27,7 @@
 
         public int RatingId
         {
-            get { return ratingId }
+            get { return ratingId; }
             set
             {
                 if (value < 0 || value > 5)
