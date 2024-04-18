@@ -260,7 +260,7 @@ namespace Nitrilon.DataAccess
                     int attendees = Convert.ToInt32(reader["Attendees"]);
                     string description = Convert.ToString(reader["Description"]);
 
-                    Event e = new(eventId, newDate, name, attendees, description, null)
+                    Event e = new(eventId, newDate, name, attendees, description, null) // null is a placeholder for the ratings list
                     {
                         Id = eventId,
                         Date = newDate,
