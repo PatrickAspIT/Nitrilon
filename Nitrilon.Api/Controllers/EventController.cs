@@ -16,7 +16,7 @@ namespace Nitrilon.Api.Controllers
             try
             {
                 Repository repository = new();
-                string events = repository.GetActiveOrFutureEvents();
+                List<Event> events = repository.GetActiveOrFutureEvents();
                 return Ok(events);
             }
             catch (ArgumentException e)

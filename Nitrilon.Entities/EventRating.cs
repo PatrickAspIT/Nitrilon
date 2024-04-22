@@ -2,19 +2,28 @@
 {
     public class EventRating
     {
+        #region Fields
         private int eventRatingId;
         private int eventId;
         private int ratingId;
+        #endregion
 
+        #region Properties
         public int EventRatingId
         {
-            get { return eventRatingId; }
-            set { eventRatingId = value; }
-        } 
+            get => eventRatingId;  //get { return eventRatingId; }
+            set 
+            { 
+                if (eventRatingId != value)
+                {
+                    eventRatingId = value;
+                }                
+            }
+        }
 
         public int EventId
         {
-            get { return eventId; }
+            get => eventId; //get { return eventId; }
             set
             {
                 if (value <= 0)
@@ -27,7 +36,7 @@
 
         public int RatingId
         {
-            get { return ratingId; }
+            get => ratingId; //get { return ratingId; }
             set
             {
                 if (value < 0 || value > 5)
@@ -36,7 +45,7 @@
                 }
                 ratingId = value;
             }
-        }
-
+        } 
+        #endregion
     }
 }

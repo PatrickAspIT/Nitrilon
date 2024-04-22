@@ -75,17 +75,17 @@ namespace Nitrilon.DataAccess
                     string name = Convert.ToString(reader["Name"]);
                     int attendees = Convert.ToInt32(reader["Attendees"]);
                     string description = Convert.ToString(reader["Description"]);
+                    List<Rating> ratingList = new List<Rating>();
 
-                    Event e = new(id, date, name, attendees, description, null)
+                    try
                     {
-                        Id = id,
-                        Date = date,
-                        Name = name,
-                        Attendees = attendees,
-                        Description = description,
+                        Event e = new Event(id, date, name, attendees, description, ratingList);
+                        events.Add(e);
+                    }
+                    catch (ArgumentException Ex)
+                    {
+                        throw new Exception(Ex.Message);
                     };
-
-                    events.Add(e);
                 }
 
                 // 6: Close the connection when it is not needed anymore:
@@ -130,20 +130,21 @@ namespace Nitrilon.DataAccess
                     string name = Convert.ToString(reader["Name"]);
                     int attendees = Convert.ToInt32(reader["Attendees"]);
                     string description = Convert.ToString(reader["Description"]);
+                    List<Rating> ratingList = new List<Rating>();
 
-                    Event e = new(eventId, date, name, attendees, description, null)
+                    try
                     {
-                        Id = eventId,
-                        Date = date,
-                        Name = name,
-                        Attendees = attendees,
-                        Description = description,
-                    };
+                        Event oneEvent = new Event(eventId, date, name, attendees, description, ratingList);
 
-                    // 6: Close the connection when it is not needed anymore:
-                    connection.Close();
+                        // 6: Close the connection when it is not needed anymore:
+                        connection.Close();
 
-                    return e;
+                        return oneEvent;
+                    }
+                    catch (ArgumentException Ex)
+                    {
+                        throw new Exception(Ex.Message);
+                    }
                 }
             }
             catch (ArgumentException e)
@@ -229,10 +230,10 @@ namespace Nitrilon.DataAccess
             return newId;
         }
 
-        public string GetActiveOrFutureEvents()
+        public List<Event> GetActiveOrFutureEvents()
         {
             List<Event> events = new List<Event>();
-            string returnValues = "";
+            //string returnValues = "";
 
             try
             {
@@ -259,37 +260,37 @@ namespace Nitrilon.DataAccess
                     string name = Convert.ToString(reader["Name"]);
                     int attendees = Convert.ToInt32(reader["Attendees"]);
                     string description = Convert.ToString(reader["Description"]);
+                    List<Rating> ratingList = new List<Rating>();
 
-                    Event e = new(eventId, newDate, name, attendees, description, null) // null is a placeholder for the ratings list
+                    try
                     {
-                        Id = eventId,
-                        Date = newDate,
-                        Name = name,
-                        Attendees = attendees,
-                        Description = description,
-                    };
-
-                    events.Add(e);
+                        Event e = new Event(eventId, newDate, name, attendees, description, ratingList);
+                        events.Add(e);
+                    }
+                    catch (ArgumentException Ex)
+                    {
+                        throw new Exception(Ex.Message);
+                    }
                 }
 
                 // 6: Close the connection when it is not needed anymore:
                 connection.Close();
 
                 // Check what this does:
-                for (int i = 0; i < events.Count; i++)
-                {
-                    returnValues += events[i].Id.ToString() + ": ";
-                    returnValues += events[i].Name;
-                    returnValues += " (" + events[i].Date.ToString("yyyy-MM-dd");
-                    returnValues += ") | ";
-                }
+                //for (int i = 0; i < events.Count; i++)
+                //{
+                //    returnValues += events[i].Id.ToString() + ": ";
+                //    returnValues += events[i].Name;
+                //    returnValues += " (" + events[i].Date.ToString("yyyy-MM-dd");
+                //    returnValues += ") | ";
+                //}
             }
             catch (ArgumentException e)
             {
                 throw new Exception(e.Message);
             }
 
-            return returnValues;
+            return events;
         }
         #endregion
 
