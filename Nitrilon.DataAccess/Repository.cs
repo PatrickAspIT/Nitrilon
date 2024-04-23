@@ -496,7 +496,12 @@ namespace Nitrilon.DataAccess
             }
 
             return newId;
-        } 
+        }
+
+        public (int, int, int) EventRatingData(Event @event)
+        {
+            return (0, 0, 0);
+        }
         #endregion
     }
 }

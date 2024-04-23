@@ -1,7 +1,10 @@
 "use strict";
 
-// Get the button:
+// Get the button to fetch the events from the server:
 let fetchButton = document.getElementById("fetchButton");
+
+// Get the button to go to the rating site:
+let ratingSiteButton = document.getElementById("ratingSite");
 
 // Get the event container:
 let eventList = document.querySelector("#event-Container");
