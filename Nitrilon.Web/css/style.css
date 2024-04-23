@@ -76,12 +76,22 @@ header img
   cursor: pointer;
 }
 
+/* SMILEY STYLING */
+
+main h2
+{
+  margin-top: calc(50vh - 18vh - 140px);
+  text-align: center;
+  font-size: 40px;
+}
+
 #smileySection
 {
   display: flex;
   flex-wrap: wrap;
   width: 100vw;
-  margin-top: calc(50vh - 18vh - 100px);
+  margin-top: 40px;
+  
 }
 
 #smileySection img 
