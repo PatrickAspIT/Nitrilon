@@ -29,15 +29,10 @@ Aktører:
 # IKKE_FUNKTIONELLE KRAV
 Systemet skal overholde følgende ikke-funktionelle krav:
 01. Databasen skal hostes på en Microsoft SQL Express Server 2019 på din lokale maskine.
-
 02. Backend skal udvikles i C# med Visual Studio 2022.
-
 03. Backend skal være en ASP.NET Core application med .NET 8 som runtime.
-
 04. Backend skal hostes på en IIS Express på din lokale maskine til udvikling.
-
 05. Backend skal til produktion kunne deployes på en Windows Server 2019 maskine på en IIS med .NET 8 som runtime.
-
 06. Alle frontends skal udvikles i HTML5, CSS3 og javascript eller tilsvarende.
 
 07a. Frontend til Event Rating skal designes til og kunne afvikles i en browser på en iOS tablet.
