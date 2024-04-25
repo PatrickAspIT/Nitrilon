@@ -24,20 +24,20 @@ namespace Nitrilon.Api.Controllers
             }            
         }
 
-        [HttpGet]
-        public ActionResult<IEnumerable<EventRating>> GetAll()
-        {
-            try
-            {
-                Repository repository = new();
-                List<EventRating> eventRatings = repository.GetAllEventRatings();
-                return eventRatings;
-            }
-            catch (Exception e)
-            {
-                return StatusCode(500);
-            }
-        }
+        //[HttpGet]
+        //public ActionResult<IEnumerable<EventRating>> GetAll()
+        //{
+        //    try
+        //    {
+        //        Repository repository = new();
+        //        List<EventRating> eventRatings = repository.GetAllEventRatings();
+        //        return eventRatings;
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        return StatusCode(500);
+        //    }
+        //}
 
         [HttpGet("{id}")]
         public ActionResult<EventRating> Get(int id)
