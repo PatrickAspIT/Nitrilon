@@ -106,7 +106,7 @@ header img
 
 main h2
 {
-  margin-top: calc(50vh - 18vh - 140px);
+  margin-top: calc(50vh - 18vh - 180px);
   text-align: center;
   font-size: 40px;
 }
@@ -114,15 +114,16 @@ main h2
 #smileySection
 {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   width: 100vw;
-  margin-top: 40px;
+  margin-top: 30px;
   
 }
 
 #smileySection img 
 {
-  width: calc(100vw / 5);
+  width: calc(99vw / 5);
 }
 
 /* FOOTER STYLING */
@@ -137,9 +138,13 @@ footer
   bottom: 0px;
   right: 0px;
   left: 0px;
-  height: 18vh;
   background-color: #333;
-  color: white;
+  height: calc(25px * 5 + 15px);
+}
+
+footer h3 
+{
+  font-size: 15px;
 }
 
 footer h3:nth-of-type(1),

@@ -1,27 +1,12 @@
 "use strict";
 
-// Get the button to fetch the events from the server:
-let fetchButton = document.getElementById("fetchButton");
-
-// Get the button to go to the rating site:
-let ratingSiteButton = document.getElementById("ratingSite");
-
 // Get the event container:
 let eventList = document.querySelector("#event-Container");
-
-// Add eventlistener to the buttons:
-fetchButton.addEventListener("click", fetchEvents);
-ratingSiteButton.addEventListener("click", goToRatingSite);
 
 // Where to fetch the events from:
 const getEventsURL = 'https://localhost:7268/api/Event/GetActiveorFutureEvents';
 
-// Function to go to new site when ratingSiteButton is clicked:
-function goToRatingSite()
-{
-  window.location.href = "./ratings.html";
-}
-
+fetchEvents();
 // Function to fetch the events from the server:
 function fetchEvents()
 {
@@ -59,24 +44,24 @@ function fetchEvents()
           eventCard.setAttribute('id', event.id);
 
           // Add eventlistener to the eventCard:
-          eventCard.addEventListener("click", function(OnClick)
-          {
-            OnClick.preventDefault();
-            // Set the eventId in localStorage:
-            localStorage.setItem("eventId", this.id);
-            window.x = this.id;
+          // eventCard.addEventListener("click", function(OnClick)
+          // {
+          //   OnClick.preventDefault();
+          //   // Set the eventId in localStorage:
+          //   localStorage.setItem("eventId", this.id);
+          //   window.x = this.id;
             
-            console.log("Event ID:", this.id);
+          //   console.log("Event ID:", this.id);
 
-            // Go to the smileys site:
-            window.location.href = "./smileys.html";
-          });
+          //   // Go to the smileys site:
+          //   window.location.href = "./smileys.html";
+          // });
         }
       });
     })
     .catch(error => {
       console.error('Error:', error);
     });
-    fetchButton.removeEventListener("click", fetchEvents);
-    fetchButton.classList.remove("pointer");
+    // fetchButton.removeEventListener("click", fetchEvents);
+    // fetchButton.classList.remove("pointer");
 }
