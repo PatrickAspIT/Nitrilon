@@ -9,35 +9,13 @@ namespace Nitrilon.Api.Controllers
     [ApiController]
     public class EventRatingController : Controller
     {
-        //[HttpDelete("{id}")]
-        //public IActionResult Delete(int id)
-        //{
-        //    try
-        //    {
-        //        Repository repository = new();
-        //        repository.DeleteEventRating(id);
-        //        return Ok();
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        return StatusCode(500);
-        //    }
-        //}
-
-        //[HttpPut]
-        //public IActionResult Put(EventRating eventRatingToUpdate)
-        //{
-        //    try
-        //    {
-        //        Repository repository = new();
-        //        repository.UpdateEventRating(eventRatingToUpdate);
-        //        return Ok();
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        return StatusCode(500);
-        //    }
-        //}
+        [HttpGet]
+        public ActionResult<EventRatingData> GetEventRatingDataFor(int eventId)
+        {
+            Repository repository = new();
+            EventRatingData eventRatingData = repository.GetEventRatingDataBy(eventId);
+            return Ok(eventRatingData);
+        }
 
         [HttpGet]
         public ActionResult<IEnumerable<EventRating>> GetAll()

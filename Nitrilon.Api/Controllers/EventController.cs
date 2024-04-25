@@ -92,7 +92,7 @@ namespace Nitrilon.Api.Controllers
             try
             {
                 Repository repository = new();
-                int createdId = repository.Save(newEvent);
+                int createdId = repository.Save(newEvent); // r.Save(newEvent);
                 return Ok(createdId);
             }
             catch(Exception e)

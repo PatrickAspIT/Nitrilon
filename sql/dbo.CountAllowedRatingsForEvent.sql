@@ -2,7 +2,7 @@
     @EventId INT
 AS
 BEGIN
-    DECLARE @Count1 INT, @Count2 INT, @Count3 INT, @Count4 int, @Count5 int;
+    DECLARE @Count1 INT, @Count2 INT, @Count3 INT, @Count4 INT, @Count5 INT;
 
     SELECT @Count1 = COUNT(CASE WHEN RatingId = 1 THEN 1 ELSE NULL END),
            @Count2 = COUNT(CASE WHEN RatingId = 2 THEN 1 ELSE NULL END),

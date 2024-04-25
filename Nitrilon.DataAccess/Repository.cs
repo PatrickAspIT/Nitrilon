@@ -75,11 +75,11 @@ namespace Nitrilon.DataAccess
                     string name = Convert.ToString(reader["Name"]);
                     int attendees = Convert.ToInt32(reader["Attendees"]);
                     string description = Convert.ToString(reader["Description"]);
-                    List<Rating> ratingList = new List<Rating>();
+                    //List<Rating> ratingList = new List<Rating>();
 
                     try
                     {
-                        Event e = new Event(id, date, name, attendees, description, ratingList);
+                        Event e = new Event(id, date, name, attendees, description);
                         events.Add(e);
                     }
                     catch (ArgumentException Ex)
@@ -130,11 +130,11 @@ namespace Nitrilon.DataAccess
                     string name = Convert.ToString(reader["Name"]);
                     int attendees = Convert.ToInt32(reader["Attendees"]);
                     string description = Convert.ToString(reader["Description"]);
-                    List<Rating> ratingList = new List<Rating>();
+                    //List<Rating> ratingList = new List<Rating>();
 
                     try
                     {
-                        Event oneEvent = new Event(eventId, date, name, attendees, description, ratingList);
+                        Event oneEvent = new Event(eventId, date, name, attendees, description);
 
                         // 6: Close the connection when it is not needed anymore:
                         connection.Close();
@@ -260,11 +260,11 @@ namespace Nitrilon.DataAccess
                     string name = Convert.ToString(reader["Name"]);
                     int attendees = Convert.ToInt32(reader["Attendees"]);
                     string description = Convert.ToString(reader["Description"]);
-                    List<Rating> ratingList = new List<Rating>();
+                    //List<Rating> ratingList = new List<Rating>();
 
                     try
                     {
-                        Event e = new Event(eventId, newDate, name, attendees, description, ratingList);
+                        Event e = new Event(eventId, newDate, name, attendees, description);
                         events.Add(e);
                     }
                     catch (ArgumentException Ex)
@@ -275,15 +275,6 @@ namespace Nitrilon.DataAccess
 
                 // 6: Close the connection when it is not needed anymore:
                 connection.Close();
-
-                // Check what this does:
-                //for (int i = 0; i < events.Count; i++)
-                //{
-                //    returnValues += events[i].Id.ToString() + ": ";
-                //    returnValues += events[i].Name;
-                //    returnValues += " (" + events[i].Date.ToString("yyyy-MM-dd");
-                //    returnValues += ") | ";
-                //}
             }
             catch (ArgumentException e)
             {
@@ -291,6 +282,53 @@ namespace Nitrilon.DataAccess
             }
 
             return events;
+        }
+
+        public EventRatingData GetEventRatingDataBy(int eventId)
+        {
+            int horribleRatingCount = 0;
+            int badRatingCount = 0;
+            int neutralRatingCount = 0;
+            int goodRatingCount = 0;
+            int fantasticRatingCount = 0;
+            EventRatingData eventRatingData = default;
+
+            try
+            {
+                string sql = $"EXEC CountAllowedRatingsForEvent @EventId = {eventId}";
+
+                // 1: Make a sqlConnection object:
+                SqlConnection connection = new SqlConnection(connectionString);
+
+                // 2: Make a sqlCommand object:
+                SqlCommand command = new SqlCommand(sql, connection);
+
+                // 3: Open the connection:
+                connection.Open();
+
+                // 4: Execute query:
+                SqlDataReader reader = command.ExecuteReader();
+
+                // 5: Retrieve data form the data reader:
+                if (reader.Read())
+                {
+                    horribleRatingCount = Convert.ToInt32(reader["RatingId1Count"]);
+                    badRatingCount = Convert.ToInt32(reader["RatingId2Count"]);
+                    neutralRatingCount = Convert.ToInt32(reader["RatingId3Count"]);
+                    goodRatingCount = Convert.ToInt32(reader["RatingId4Count"]);
+                    fantasticRatingCount = Convert.ToInt32(reader["RatingId5Count"]);
+                    eventRatingData = new(horribleRatingCount, badRatingCount, neutralRatingCount, goodRatingCount, fantasticRatingCount);
+                }
+
+                // 6: Close the connection when it is not needed anymore:
+                connection.Close();
+            }
+            catch (ArgumentException e)
+            {
+                throw new Exception(e.Message);
+            }
+
+            return eventRatingData;
         }
         #endregion
 

@@ -10,18 +10,23 @@
         private string name;
         private int attendees;
         private string description;
-        private List<Rating> ratings;
+        private EventRatingData ratings;
         #endregion
 
-        #region Constructors
-        public Event(int id, DateTime date, string name, int attendees, string description, List<Rating> ratings)
+        public Event(int id, DateTime date, string name, int attendees, string description)
         {
             Id = id;
             Date = date;
             Name = name;
             Attendees = attendees;
             Description = description;
-            this.ratings = ratings ?? throw new ArgumentNullException(nameof(ratings));
+        }
+
+        #region Constructors
+        public Event(int id, DateTime date, string name, int attendees, string description, EventRatingData ratings)
+            : this(id, date, name, attendees, description)
+        {
+            Ratings = ratings;
         }
         #endregion
 
@@ -89,45 +94,47 @@
                 }
             }
         }
+
+        public EventRatingData Ratings { get => ratings; set => ratings = value; }
         #endregion
 
         #region Methods
-        /// <summary>
-        /// Adds a rating to this event.
-        /// </summary>
-        /// <param name="rating">The rating to add to this event.</param>
-        /// <exception cref="ArgumentNullException">Thrown when the provided rating is null.</exception>
-        public void Add(Rating rating)
-        {
-            if (rating == null)
-            {
-                throw new ArgumentNullException(nameof(rating));
-            }
-            ratings.Add(rating);
-        }
+        ///// <summary>
+        ///// Adds a rating to this event.
+        ///// </summary>
+        ///// <param name="rating">The rating to add to this event.</param>
+        ///// <exception cref="ArgumentNullException">Thrown when the provided rating is null.</exception>
+        //public void Add(Rating rating)
+        //{
+        //    if (rating == null)
+        //    {
+        //        throw new ArgumentNullException(nameof(rating));
+        //    }
+        //    ratings.Add(rating);
+        //}
 
-        /// <summary>
-        /// Gets the average value of the ratings for this event.
-        /// </summary>
-        /// <returns>The average rating value. When there are no ratings for this event, the value -1.0 is returned.</returns>
-        public double GetRatingAverage()
-        {
-            if (ratings.Count == 0)
-            {
-                double average = 0.0;
-                int sum = 0;
-                foreach (Rating rating in ratings)
-                {
-                    sum += rating.RatingValue;
-                }
-                average = (double)sum / (double)ratings.Count;
-                return average;
-            }
-            else
-            {
-                return -1.0;
-            }
-        }
+        ///// <summary>
+        ///// Gets the average value of the ratings for this event.
+        ///// </summary>
+        ///// <returns>The average rating value. When there are no ratings for this event, the value -1.0 is returned.</returns>
+        //public double GetRatingAverage()
+        //{
+        //    if (ratings.Count == 0)
+        //    {
+        //        double average = 0.0;
+        //        int sum = 0;
+        //        foreach (Rating rating in ratings)
+        //        {
+        //            sum += rating.RatingValue;
+        //        }
+        //        average = (double)sum / (double)ratings.Count;
+        //        return average;
+        //    }
+        //    else
+        //    {
+        //        return -1.0;
+        //    }
+        //}
         #endregion
     }
 }
