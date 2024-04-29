@@ -38,5 +38,35 @@ namespace Nitrilon.Api.Controllers
             }
         }
 
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int memberId)
+        {
+            try
+            {
+                Repository repository = new();
+                repository.DeleteMember(memberId);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500);
+            }
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, Member member)
+        {
+            try
+            {
+                Repository repository = new();
+                repository.UpdateMember(id, member);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500);
+            }
+        }
+
     }
 }
