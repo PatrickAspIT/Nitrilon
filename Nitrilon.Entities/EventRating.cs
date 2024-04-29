@@ -12,12 +12,12 @@
         public int EventRatingId
         {
             get => eventRatingId;  //get { return eventRatingId; }
-            set 
-            { 
+            set
+            {
                 if (eventRatingId != value)
                 {
                     eventRatingId = value;
-                }                
+                }
             }
         }
 
@@ -45,7 +45,7 @@
                 }
                 ratingId = value;
             }
-        } 
+        }
         #endregion
     }
 }

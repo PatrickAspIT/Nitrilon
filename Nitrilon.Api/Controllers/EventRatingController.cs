@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Nitrilon.DataAccess;
 using Nitrilon.Entities;
 
@@ -21,23 +20,8 @@ namespace Nitrilon.Api.Controllers
             catch (Exception e)
             {
                 return StatusCode(500);
-            }            
+            }
         }
-
-        //[HttpGet]
-        //public ActionResult<IEnumerable<EventRating>> GetAll()
-        //{
-        //    try
-        //    {
-        //        Repository repository = new();
-        //        List<EventRating> eventRatings = repository.GetAllEventRatings();
-        //        return eventRatings;
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        return StatusCode(500);
-        //    }
-        //}
 
         [HttpGet("{id}")]
         public ActionResult<EventRating> Get(int id)

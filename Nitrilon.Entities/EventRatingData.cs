@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Nitrilon.Entities
+﻿namespace Nitrilon.Entities
 {
     public class EventRatingData
     {
@@ -41,7 +35,7 @@ namespace Nitrilon.Entities
             (double, double, double, double, double) percentages = default;
 
             return percentages;
-        } 
+        }
         #endregion
     }
 }

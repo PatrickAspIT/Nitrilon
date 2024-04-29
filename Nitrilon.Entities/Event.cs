@@ -13,6 +13,9 @@
         private EventRatingData ratings;
         #endregion
 
+
+
+        #region Constructors
         public Event(int id, DateTime date, string name, int attendees, string description)
         {
             Id = id;
@@ -22,7 +25,6 @@
             Description = description;
         }
 
-        #region Constructors
         public Event(int id, DateTime date, string name, int attendees, string description, EventRatingData ratings)
             : this(id, date, name, attendees, description)
         {

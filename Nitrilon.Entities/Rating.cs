@@ -1,5 +1,6 @@
 ﻿namespace Nitrilon.Entities
 {
+    // Not used at the moment
     public class Rating
     {
         #region Fields
@@ -20,7 +21,7 @@
         #region Properties
         public int Id { get => id; set => id = value; }
         public int RatingValue { get => ratingValue; set => ratingValue = value; }
-        public string Description { get => description; set => description = value; } 
+        public string Description { get => description; set => description = value; }
         #endregion
     }
 }

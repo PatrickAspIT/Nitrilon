@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Nitrilon.DataAccess;
 using Nitrilon.Entities;
 
@@ -38,7 +37,7 @@ namespace Nitrilon.Api.Controllers
             catch (Exception e)
             {
                 return StatusCode(500);
-            }   
+            }
         }
 
         [HttpPut]
@@ -95,7 +94,7 @@ namespace Nitrilon.Api.Controllers
                 int createdId = repository.Save(newEvent);
                 return Ok(createdId);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return StatusCode(500);
             }

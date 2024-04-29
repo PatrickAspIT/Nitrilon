@@ -24,11 +24,10 @@ Aktører:
 Aktører:
 * Medlemsansvarlig: Håndtering af medlemmer. Tilføje, fjerne og se medlemmer samt medlemskab.
 
-01. Den medlemsansvarlige skal kunne se alle medlemmer.
+01. Den medlemsansvarlige skal kunne se alle medlemmer og se hvilket type medlemsskab de har.
 02. Den medlemsansvarlige skal kunne tilføje nye medlemmer.
 03. Den medlemsansvarlige skal kunne fjerne medlemmer.
-04. Den medlemsansvarlige skal kunne se hvilket type medlemsskab et medlem har.
-05. Den medlemsansvarlige skal kunne sætte et medlems status til passiv/aktiv. 
+04. Den medlemsansvarlige skal kunne sætte et medlems status til passiv/aktiv. 
 
 # IKKE_FUNKTIONELLE KRAV
 Systemet skal overholde følgende ikke-funktionelle krav:
