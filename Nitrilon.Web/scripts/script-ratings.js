@@ -44,24 +44,58 @@ function fetchEvents()
           eventCard.setAttribute('id', event.id);
 
           // Add eventlistener to the eventCard:
-          // eventCard.addEventListener("click", function(OnClick)
-          // {
-          //   OnClick.preventDefault();
-          //   // Set the eventId in localStorage:
-          //   localStorage.setItem("eventId", this.id);
-          //   window.x = this.id;
+          eventCard.addEventListener("click", function(OnClick)
+          {
+            fetchEventRatings(this.id);
+            // OnClick.preventDefault();
+            // // Set the eventId in localStorage:
+            // localStorage.setItem("eventId", this.id);
+            // window.x = this.id;
             
-          //   console.log("Event ID:", this.id);
+            // console.log("Event ID:", this.id);
 
-          //   // Go to the smileys site:
-          //   window.location.href = "./smileys.html";
-          // });
+            // // Go to the smileys site:
+            // window.location.href = "./smileys.html";
+          });
         }
       });
     })
     .catch(error => {
       console.error('Error:', error);
     });
-    // fetchButton.removeEventListener("click", fetchEvents);
-    // fetchButton.classList.remove("pointer");
+}
+
+function fetchEventRatings(eventId) {
+  var divExists = !!document.getElementById(eventId + "-Ratings");
+  if (divExists)
+  {
+    divExists.remove();
+  }
+  else
+  {
+
+  }
+  let currentEvent = document.getElementById(eventId);
+  const fetchOptions = {
+    method: 'GET',
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  
+  fetch(`https://localhost:7268/api/EventRating?eventId=${eventId}`, fetchOptions)
+    .then(response => {
+      if (!response.ok) 
+      {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      let ratings = data;
+      console.log(ratings);
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
 }

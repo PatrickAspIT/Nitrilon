@@ -12,19 +12,24 @@ Aktører:
 * Eventansvarlig: Den der skal have vist oversigterne over gæsternes bedømmelse.
 * Klargøringsansvarlig: Den der klargører devicet til at gæsterne kan rate eventet.
 
-01: En gæst skal kunne bedømme oplevelsen af et event, med valg af én værdi på en skala med tre niveauer.
+01. En gæst skal kunne bedømme oplevelsen af et event, med valg af én værdi på en skala med tre niveauer.
+02. Gæsten skal have feedback efter indtastningen af bedømmelsen.
+03. Systemet skal automatisk klargøre til næste indtastning, efter en indtastning.
+04. Den eventansvarlige skal kunne vælge et event for at få vist antallet af bedømmelser i hver bedømmelsesniveau.
+05. Den klargøringsansvarlige skal få vist de events der kan vælges, når devicet skal klargøres til brug.
+06. De events der skal vises til den klargøringsansvarlige, er igangværende og og fremtidige events.
+07. Når den klargøringsansvarlige har valgt et event, skal systemet viderestille til bedømmelsessiden.
 
-02: Gæsten skal have feedback efter indtastningen af bedømmelsen.
+## Subsystem 02: Medlemshåndtering
+Aktører:
+* Medlemsansvarlig: Håndtering af medlemmer. Tilføje, fjerne og se medlemmer samt medlemskab.
+* Medlemmer: Har ikke en aktiv rolle endnu.
 
-03: Systemet skal automatisk klargøre til næste indtastning, efter en indtastning.
-
-04: Den eventansvarlige skal kunne vælge et event for at få vist antallet af bedømmelser i hver bedømmelsesniveau.
-
-05: Den klargøringsansvarlige skal få vist de events der kan vælges, når devicet skal klargøres til brug.
-
-06: De events der skal vises til den klargøringsansvarlige, er igangværende og og fremtidige events.
-
-07: Når den klargøringsansvarlige har valgt et event, skal systemet viderestille til bedømmelsessiden.
+01. Den medlemsansvarlige skal kunne se alle medlemmer.
+02. Den medlemsansvarlige skal kunne tilføje nye medlemmer.
+03. Den medlemsansvarlige skal kunne fjerne medlemmer.
+04. Den medlemsansvarlige skal kunne se hvilket type medlemsskab et medlem har.
+05. Den medlemsansvarlige skal kunne sætte et medlems status til passiv/aktiv. 
 
 # IKKE_FUNKTIONELLE KRAV
 Systemet skal overholde følgende ikke-funktionelle krav:
