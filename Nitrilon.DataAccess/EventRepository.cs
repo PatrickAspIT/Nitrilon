@@ -22,20 +22,11 @@ namespace Nitrilon.DataAccess
             {
                 string sql = $"DELETE FROM Events WHERE EventId = {id}";
 
-                // 1: Make a sqlConnection object:
-                SqlConnection connection = new SqlConnection(connectionString);
+                // Execute query:
+                SqlDataReader reader = Execute(sql);
 
-                // 2: Make a sqlCommand object:
-                SqlCommand command = new SqlCommand(sql, connection);
-
-                // 3: Open the connection:
-                connection.Open();
-
-                // 4: Execute the delete command:
-                command.ExecuteNonQuery();
-
-                // 5: Close the connection when it is not needed anymore:
-                connection.Close();
+                // Close the connection when it is not needed anymore:
+                CloseConnection();
             }
             catch (ArgumentException e)
             {
@@ -56,20 +47,11 @@ namespace Nitrilon.DataAccess
             try
             {
                 string sql = "SELECT * FROM Events";
+                                
+                // Execute query:
+                SqlDataReader reader = Execute(sql);
 
-                // 1: Make a sqlConnection object:
-                SqlConnection connection = new SqlConnection(connectionString);
-
-                // 2: Make a sqlCommand object:
-                SqlCommand command = new SqlCommand(sql, connection);
-
-                // 3: Open the connection:
-                connection.Open();
-
-                // 4: Execute query:
-                SqlDataReader reader = command.ExecuteReader();
-
-                // 5: Retrieve data form the data reader:
+                // Retrieve data form the data reader:
                 while (reader.Read())
                 {
                     int id = Convert.ToInt32(reader["EventId"]);
@@ -77,21 +59,13 @@ namespace Nitrilon.DataAccess
                     string name = Convert.ToString(reader["Name"]);
                     int attendees = Convert.ToInt32(reader["Attendees"]);
                     string description = Convert.ToString(reader["Description"]);
-                    //List<Rating> ratingList = new List<Rating>();
 
-                    try
-                    {
-                        Event e = new Event(id, date, name, attendees, description);
-                        events.Add(e);
-                    }
-                    catch (ArgumentException Ex)
-                    {
-                        throw new Exception(Ex.Message);
-                    };
+                    Event e = new Event(id, date, name, attendees, description);
+                    events.Add(e);
                 }
 
-                // 6: Close the connection when it is not needed anymore:
-                connection.Close();
+                // Close the connection when it is not needed anymore:
+                CloseConnection();
             }
             catch (ArgumentException e)
             {
@@ -108,21 +82,14 @@ namespace Nitrilon.DataAccess
         /// <returns></returns>
         public Event GetOne(int id)
         {
+            Event oneEvent = null;
+
             try
             {
                 string sql = $"SELECT * FROM Events WHERE EventId = {id}";
 
-                // 1: Make a sqlConnection object:
-                SqlConnection connection = new SqlConnection(connectionString);
-
-                // 2: Make a sqlCommand object:
-                SqlCommand command = new SqlCommand(sql, connection);
-
-                // 3: Open the connection:
-                connection.Open();
-
-                // 4: Execute query:
-                SqlDataReader reader = command.ExecuteReader();
+                // Execute query:
+                SqlDataReader reader = Execute(sql);
 
                 // 5: Retrieve data form the data reader:
                 if (reader.Read())
@@ -132,22 +99,14 @@ namespace Nitrilon.DataAccess
                     string name = Convert.ToString(reader["Name"]);
                     int attendees = Convert.ToInt32(reader["Attendees"]);
                     string description = Convert.ToString(reader["Description"]);
-                    //List<Rating> ratingList = new List<Rating>();
 
-                    try
-                    {
-                        Event oneEvent = new Event(eventId, date, name, attendees, description);
-
-                        // 6: Close the connection when it is not needed anymore:
-                        connection.Close();
-
-                        return oneEvent;
-                    }
-                    catch (ArgumentException Ex)
-                    {
-                        throw new Exception(Ex.Message);
-                    }
+                    oneEvent = new Event(eventId, date, name, attendees, description);
                 }
+
+                // Close the connection when it is not needed anymore:
+                CloseConnection();
+
+                return oneEvent;
             }
             catch (ArgumentException e)
             {
@@ -167,20 +126,11 @@ namespace Nitrilon.DataAccess
             {
                 string sql = $"UPDATE Events SET Date = '{eventToUpdate.Date.ToString("yyyy-MM-dd")}', Name = '{eventToUpdate.Name}', Attendees = {eventToUpdate.Attendees}, Description = '{eventToUpdate.Description}' WHERE EventId = {eventToUpdate.Id}";
 
-                // 1: Make a sqlConnection object:
-                SqlConnection connection = new SqlConnection(connectionString);
+                // Execute query:
+                SqlDataReader reader = Execute(sql);
 
-                // 2: Make a sqlCommand object:
-                SqlCommand command = new SqlCommand(sql, connection);
-
-                // 3: Open the connection:
-                connection.Open();
-
-                // 4: Execute the update command:
-                command.ExecuteNonQuery();
-
-                // 5: Close the connection when it is not needed anymore:
-                connection.Close();
+                // Close the connection when it is not needed anymore:
+                CloseConnection();
             }
             catch (ArgumentException e)
             {
@@ -205,24 +155,16 @@ namespace Nitrilon.DataAccess
                 // Don't forget to format the date as 'yy-MM-dd'.
                 string sql = $"INSERT INTO Events (Date, Name, Attendees, Description) VALUES ('{newEvent.Date.ToString("yyyy-MM-dd")}', '{newEvent.Name}', {newEvent.Attendees}, '{newEvent.Description}'); SELECT SCOPE_IDENTITY();";
 
-                // 1: Make a sqlConnection object:
-                SqlConnection connection = new SqlConnection(connectionString);
+                // Execute the insert command and get the newly created id for the row:
+                SqlDataReader sqlDataReader = Execute(sql);
 
-                // 2: Make a sqlCommand object:
-                SqlCommand command = new SqlCommand(sql, connection);
-
-                // 3: Open the connection:
-                connection.Open();
-
-                // 4: Execute the insert command and ge the newly created id for the row:
-                SqlDataReader sqlDataReader = command.ExecuteReader();
                 while (sqlDataReader.Read())
                 {
                     newId = (int)sqlDataReader.GetDecimal(0);
                 }
 
-                // 5: Close the connection when it is not needed anymore:
-                connection.Close();
+                // Close the connection when it is not needed anymore:
+                CloseConnection();
             }
             catch (ArgumentException e)
             {
@@ -240,24 +182,14 @@ namespace Nitrilon.DataAccess
         public List<Event> GetActiveOrFutureEvents()
         {
             List<Event> events = new List<Event>();
-            //string returnValues = "";
 
             try
             {
                 DateTime date = DateTime.UtcNow;
                 string sql = $"SELECT * FROM Events WHERE Date >= '{date.ToString("yyyy-MM-dd")}'";
 
-                // 1: Make a sqlConnection object:
-                SqlConnection connection = new SqlConnection(connectionString);
-
-                // 2: Make a sqlCommand object:
-                SqlCommand command = new SqlCommand(sql, connection);
-
-                // 3: Open the connection:
-                connection.Open();
-
                 // 4: Execute query:
-                SqlDataReader reader = command.ExecuteReader();
+                SqlDataReader reader = Execute(sql);
 
                 // 5: Retrieve data form the data reader:
                 if (reader.Read())
@@ -267,21 +199,13 @@ namespace Nitrilon.DataAccess
                     string name = Convert.ToString(reader["Name"]);
                     int attendees = Convert.ToInt32(reader["Attendees"]);
                     string description = Convert.ToString(reader["Description"]);
-                    //List<Rating> ratingList = new List<Rating>();
 
-                    try
-                    {
-                        Event e = new Event(eventId, newDate, name, attendees, description);
-                        events.Add(e);
-                    }
-                    catch (ArgumentException Ex)
-                    {
-                        throw new Exception(Ex.Message);
-                    }
+                    Event e = new Event(eventId, newDate, name, attendees, description);
+                    events.Add(e);
                 }
 
-                // 6: Close the connection when it is not needed anymore:
-                connection.Close();
+                // Close the connection when it is not needed anymore:
+                CloseConnection();
             }
             catch (ArgumentException e)
             {
@@ -310,19 +234,10 @@ namespace Nitrilon.DataAccess
             {
                 string sql = $"EXEC CountAllowedRatingsForEvent @EventId = {eventId}";
 
-                // 1: Make a sqlConnection object:
-                SqlConnection connection = new SqlConnection(connectionString);
+                // Execute query:
+                SqlDataReader reader = Execute(sql);
 
-                // 2: Make a sqlCommand object:
-                SqlCommand command = new SqlCommand(sql, connection);
-
-                // 3: Open the connection:
-                connection.Open();
-
-                // 4: Execute query:
-                SqlDataReader reader = command.ExecuteReader();
-
-                // 5: Retrieve data form the data reader:
+                // Retrieve data form the data reader:
                 if (reader.Read())
                 {
                     horribleRatingCount = Convert.ToInt32(reader["RatingId1Count"]);
@@ -333,8 +248,8 @@ namespace Nitrilon.DataAccess
                     eventRatingData = new(horribleRatingCount, badRatingCount, neutralRatingCount, goodRatingCount, fantasticRatingCount);
                 }
 
-                // 6: Close the connection when it is not needed anymore:
-                connection.Close();
+                // Close the connection when it is not needed anymore:
+                CloseConnection();
             }
             catch (ArgumentException e)
             {
@@ -348,32 +263,6 @@ namespace Nitrilon.DataAccess
         //---------------------------------EventRating-----------------------------------
 
         #region EventRating Methods
-        ///// <summary>
-        ///// DELETE: Delete an EventRating from the database.
-        ///// </summary>
-        ///// <param name="id"></param>
-        //public void DeleteEventRating(int id)
-        //{
-        //    string sql = $"DELETE FROM EventRatings WHERE EventRatingId = {id}";
-
-        //    // 1: Make a sqlConnection object:
-        //    SqlConnection connection = new SqlConnection(connectionString);
-
-        //    // 2: Make a sqlCommand object:
-        //    SqlCommand command = new SqlCommand(sql, connection);
-
-        //    // 3: Open the connection:
-        //    connection.Open();
-
-        //    // 4: Execute the delete command:
-        //    command.ExecuteNonQuery();
-
-        //    // 5: Close the connection when it is not needed anymore:
-        //    connection.Close();
-
-        //    return;
-        //}
-
         /// <summary>
         /// GET: Get all EventRatings from the database.
         /// </summary>
@@ -386,19 +275,10 @@ namespace Nitrilon.DataAccess
             {
                 string sql = "SELECT * FROM EventRatings";
 
-                // 1: Make a sqlConnection object:
-                SqlConnection connection = new SqlConnection(connectionString);
+                // Execute query:
+                SqlDataReader reader = Execute(sql);
 
-                // 2: Make a sqlCommand object:
-                SqlCommand command = new SqlCommand(sql, connection);
-
-                // 3: Open the connection:
-                connection.Open();
-
-                // 4: Execute query:
-                SqlDataReader reader = command.ExecuteReader();
-
-                // 5: Retrieve data form the data reader:
+                // Retrieve data form the data reader:
                 while (reader.Read())
                 {
                     int eventRatingId = Convert.ToInt32(reader["EventRatingId"]);
@@ -415,8 +295,8 @@ namespace Nitrilon.DataAccess
                     eventRatings.Add(EventRating);
                 }
 
-                // 6: Close the connection when it is not needed anymore:
-                connection.Close();
+                // Close the connection when it is not needed anymore:
+                CloseConnection();
             }
             catch (ArgumentException e)
             {
@@ -437,19 +317,10 @@ namespace Nitrilon.DataAccess
             {
                 string sql = $"SELECT * FROM EventRatings WHERE EventRatingId = {id}";
 
-                // 1: Make a sqlConnection object:
-                SqlConnection connection = new SqlConnection(connectionString);
+                // Execute query:
+                SqlDataReader reader = Execute(sql);
 
-                // 2: Make a sqlCommand object:
-                SqlCommand command = new SqlCommand(sql, connection);
-
-                // 3: Open the connection:
-                connection.Open();
-
-                // 4: Execute query:
-                SqlDataReader reader = command.ExecuteReader();
-
-                // 5: Retrieve data form the data reader:
+                // Retrieve data form the data reader:
                 if (reader.Read())
                 {
                     int eventRatingId = Convert.ToInt32(reader["EventRatingId"]);
@@ -463,8 +334,8 @@ namespace Nitrilon.DataAccess
                         RatingId = ratingId,
                     };
 
-                    // 6: Close the connection when it is not needed anymore:
-                    connection.Close();
+                    // Close the connection when it is not needed anymore:
+                    CloseConnection();
 
                     return EventRating;
                 }
@@ -476,32 +347,6 @@ namespace Nitrilon.DataAccess
 
             return null;
         }
-
-        ///// <summary>
-        ///// PUT: Update an EventRating in the database.
-        ///// </summary>
-        ///// <param name="eventRatingToUpdate"></param>
-        //public void UpdateEventRating(EventRating eventRatingToUpdate)
-        //{
-        //    string sql = $"UPDATE EventRatings SET EventId = {eventRatingToUpdate.EventId}, RatingId = {eventRatingToUpdate.RatingId} WHERE EventRatingId = {eventRatingToUpdate.EventRatingId}";
-
-        //    // 1: Make a sqlConnection object:
-        //    SqlConnection connection = new SqlConnection(connectionString);
-
-        //    // 2: Make a sqlCommand object:
-        //    SqlCommand command = new SqlCommand(sql, connection);
-
-        //    // 3: Open the connection:
-        //    connection.Open();
-
-        //    // 4: Execute the update command:
-        //    command.ExecuteNonQuery();
-
-        //    // 5: Close the connection when it is not needed anymore:
-        //    connection.Close();
-
-        //    return;
-        //}
 
         /// <summary>
         /// POST: Save new EventRating to the database.
@@ -522,24 +367,16 @@ namespace Nitrilon.DataAccess
                 // Don't forget to format a date as 'yyyy-MM-dd'
                 string sql = $"INSERT INTO EventRatings (EventId, RatingId) VALUES ({eventId},{ratingId});";
 
-                // 1: make a SqlConnection object:
-                SqlConnection connection = new SqlConnection(connectionString);
+                // Execute the insert command and get the newly created id for the row:
+                SqlDataReader sqlDataReader = Execute(sql);
 
-                // 2: make a SqlCommand object:
-                SqlCommand command = new SqlCommand(sql, connection);
-
-                // 3. Open the connection:
-                connection.Open();
-
-                // 4. Execute the insert command and get the newly created id for the row:
-                SqlDataReader sqlDataReader = command.ExecuteReader();
                 while (sqlDataReader.Read())
                 {
                     newId = (int)sqlDataReader.GetDecimal(0);
                 }
 
-                // 5. Close the connection when it is not needed anymore:
-                connection.Close();
+                // Close the connection when it is not needed anymore:
+                CloseConnection();
             }
             catch (ArgumentException e)
             {
@@ -548,12 +385,7 @@ namespace Nitrilon.DataAccess
 
             return newId;
         }
-
-        public (int, int, int) EventRatingData(Event @event)
-        {
-            return (0, 0, 0);
-        }
         #endregion
-                
+
     }
 }
