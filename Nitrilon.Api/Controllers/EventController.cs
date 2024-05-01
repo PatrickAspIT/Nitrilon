@@ -14,7 +14,7 @@ namespace Nitrilon.Api.Controllers
         {
             try
             {
-                Repository repository = new();
+                EventRepository repository = new();
                 List<Event> events = repository.GetActiveOrFutureEvents();
                 return Ok(events);
             }
@@ -30,7 +30,7 @@ namespace Nitrilon.Api.Controllers
         {
             try
             {
-                Repository repository = new();
+                EventRepository repository = new();
                 repository.Delete(id);
                 return Ok();
             }
@@ -45,7 +45,7 @@ namespace Nitrilon.Api.Controllers
         {
             try
             {
-                Repository repository = new();
+                EventRepository repository = new();
                 repository.Update(eventToUpdate);
                 return Ok();
             }
@@ -60,7 +60,7 @@ namespace Nitrilon.Api.Controllers
         {
             try
             {
-                Repository repository = new();
+                EventRepository repository = new();
                 List<Event> events = repository.GetAllEvents();
                 return events;
             }
@@ -75,7 +75,7 @@ namespace Nitrilon.Api.Controllers
         {
             try
             {
-                Repository repository = new();
+                EventRepository repository = new();
                 Event events = repository.GetOne(id);
                 return events;
             }
@@ -90,7 +90,7 @@ namespace Nitrilon.Api.Controllers
         {
             try
             {
-                Repository repository = new();
+                EventRepository repository = new();
                 int createdId = repository.Save(newEvent);
                 return Ok(createdId);
             }

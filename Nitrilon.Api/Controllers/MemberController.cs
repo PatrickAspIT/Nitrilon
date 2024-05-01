@@ -13,7 +13,7 @@ namespace Nitrilon.Api.Controllers
         {
             try
             {
-                Repository repository = new();
+                MemberRepository repository = new();
                 List<Member> members = repository.GetAllMembers();
                 return members;
             }
@@ -28,7 +28,7 @@ namespace Nitrilon.Api.Controllers
         {
             try
             {
-                Repository repository = new();
+                MemberRepository repository = new();
                 repository.AddMember(member);
                 return Ok();
             }
@@ -43,7 +43,7 @@ namespace Nitrilon.Api.Controllers
         {
             try
             {
-                Repository repository = new();
+                MemberRepository repository = new();
                 repository.DeleteMember(memberId);
                 return Ok();
             }
@@ -58,7 +58,7 @@ namespace Nitrilon.Api.Controllers
         {
             try
             {
-                Repository repository = new();
+                MemberRepository repository = new();
                 repository.UpdateMember(id, member);
                 return Ok();
             }

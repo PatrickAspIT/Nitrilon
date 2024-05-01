@@ -13,7 +13,7 @@ namespace Nitrilon.Api.Controllers
         {
             try
             {
-                Repository repository = new();
+                EventRepository repository = new();
                 EventRatingData eventRatingData = repository.GetEventRatingDataBy(eventId);
                 return Ok(eventRatingData);
             }
@@ -28,7 +28,7 @@ namespace Nitrilon.Api.Controllers
         {
             try
             {
-                Repository repository = new();
+                EventRepository repository = new();
                 EventRating eventRating = repository.GetOneEventRating(id);
                 return eventRating;
             }
@@ -43,7 +43,7 @@ namespace Nitrilon.Api.Controllers
         {
             try
             {
-                Repository repository = new();
+                EventRepository repository = new();
                 int createdId = repository.SaveEventRating(eventId, ratingId);
                 return Ok(createdId);
             }
