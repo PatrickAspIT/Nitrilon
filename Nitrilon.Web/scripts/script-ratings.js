@@ -69,13 +69,12 @@ function fetchEventRatings(eventId) {
   var divExists = !!document.getElementById(eventId + "-Ratings");
   if (divExists)
   {
+    var divExists = document.getElementById(eventId + "-Ratings");
     divExists.remove();
   }
   else
   {
-
-  }
-  let currentEvent = document.getElementById(eventId);
+    let currentEvent = document.getElementById(eventId);
   const fetchOptions = {
     method: 'GET',
     headers: {
@@ -94,8 +93,29 @@ function fetchEventRatings(eventId) {
     .then(data => {
       let ratings = data;
       console.log(ratings);
+      console.log(ratings.badRatingCount);
+      let ratingCard = document.createElement("div");
+      let horribleRatingCount = document.createElement("p");
+      let badRatingCount = document.createElement("p");
+      let neutralRatingCount = document.createElement("p");
+      let goodRatingCount = document.createElement("p");
+      let fantasticRatingCount = document.createElement("p");
+      ratingCard.classList.add("ratingCard");
+      horribleRatingCount.textContent = "Horrible rating: " + ratings.horribleRatingCount;
+      badRatingCount.textContent = "Bad rating: " + ratings.badRatingCount;
+      neutralRatingCount.textContent = "Neutral rating: " + ratings.neutralRatingCount;
+      goodRatingCount.textContent = "Good rating: " + ratings.goodRatingCount;
+      fantasticRatingCount.textContent = "Fantastic rating: " + ratings.fantasticRatingCount;
+      ratingCard.id = eventId + "-Ratings";
+      currentEvent.appendChild(ratingCard);
+      ratingCard.appendChild(horribleRatingCount);
+      ratingCard.appendChild(badRatingCount);
+      ratingCard.appendChild(neutralRatingCount);
+      ratingCard.appendChild(goodRatingCount);
+      ratingCard.appendChild(fantasticRatingCount)
     })
     .catch(error => {
       console.error('Error:', error);
     });
+  }  
 }

@@ -19,24 +19,37 @@ header
   display: flex;
 }
 
-header section:nth-of-type(1)
+header h1
+{
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+header section
 {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: calc(100vw - 400px);
-  margin-left: 150px;
+  width: 100%;
 }
 
-header section:nth-of-type(2)
+#index section:nth-of-type(2)
+{  
+  width: calc(100vw - 400px);
+}
+
+#index section:nth-of-type(1),
+#index section:nth-of-type(3)
 {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 200px;
+  margin-left: 25px;
+  margin-right: 25px;
 }
 
-header section:nth-of-type(2) button
+#index section button
 {
   border-radius: 12px;
   height: 40px;
@@ -86,6 +99,7 @@ header img
 .eventCard
 {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   border: 2px solid #333;
@@ -94,7 +108,14 @@ header img
   color: white;
   margin-top: 20px;
   width: 150px;
-  height: 30px;
+  min-height: 30px;
+}
+
+.ratingCard
+{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
 .pointer

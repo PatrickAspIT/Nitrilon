@@ -6,12 +6,16 @@ let fetchButton = document.getElementById("fetchButton");
 // Get the button to go to the rating site:
 let ratingSiteButton = document.getElementById("ratingSite");
 
+// Get the button to go to the member site:
+let memberSiteButton = document.getElementById("memberSite");
+
 // Get the event container:
 let eventList = document.querySelector("#event-Container");
 
 // Add eventlistener to the buttons:
 fetchButton.addEventListener("click", fetchEvents);
 ratingSiteButton.addEventListener("click", goToRatingSite);
+memberSiteButton.addEventListener("click", goToMemberSite);
 
 // Where to fetch the events from:
 const getEventsURL = 'https://localhost:7268/api/Event/GetActiveorFutureEvents';
@@ -20,6 +24,12 @@ const getEventsURL = 'https://localhost:7268/api/Event/GetActiveorFutureEvents';
 function goToRatingSite()
 {
   window.location.href = "./ratings.html";
+}
+
+// Function to go to new site when ratingSiteButton is clicked:
+function goToMemberSite()
+{
+  window.location.href = "./members.html";
 }
 
 // Function to fetch the events from the server:

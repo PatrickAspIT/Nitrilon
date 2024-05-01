@@ -24,19 +24,10 @@ namespace Nitrilon.DataAccess
             {
                 string sql = "SELECT * FROM Members";
 
-                // 1: Make a sqlConnection object:
-                SqlConnection connection = new SqlConnection(connectionString);
+                // Execute query:
+                SqlDataReader reader = Execute(sql);
 
-                // 2: Make a sqlCommand object:
-                SqlCommand command = new SqlCommand(sql, connection);
-
-                // 3: Open the connection:
-                connection.Open();
-
-                // 4: Execute query:
-                SqlDataReader reader = command.ExecuteReader();
-
-                // 5: Retrieve data form the data reader:
+                // Retrieve data form the data reader:
                 while (reader.Read())
                 {
                     int id = Convert.ToInt32(reader["MemberId"]);
@@ -46,19 +37,12 @@ namespace Nitrilon.DataAccess
                     DateTime date = Convert.ToDateTime(reader["Date"]);
                     int membershipId = Convert.ToInt32(reader["MembershipId"]);
 
-                    try
-                    {
-                        Member e = new Member(id, name, phoneNumber, email, date, membershipId);
-                        members.Add(e);
-                    }
-                    catch (ArgumentException Ex)
-                    {
-                        throw new Exception(Ex.Message);
-                    };
+                    Member e = new Member(id, name, phoneNumber, email, date, membershipId);
+                    members.Add(e);
                 }
 
-                // 6: Close the connection when it is not needed anymore:
-                connection.Close();
+                // Close the connection when it is not needed anymore:
+                CloseConnection();
             }
             catch (ArgumentException e)
             {
@@ -79,20 +63,11 @@ namespace Nitrilon.DataAccess
             {
                 string sql = $"INSERT INTO Members (Name, PhoneNumber, Email, Date, MembershipId) VALUES ('{member.Name}', '{member.PhoneNumber}', '{member.Email}', '{member.Date.ToString("yyyy-MM-dd")}', {member.MembershipId}); SELECT SCOPE_IDENTITY();";
 
-                // 1: Make a sqlConnection object:
-                SqlConnection connection = new SqlConnection(connectionString);
+                // Execute query:
+                SqlDataReader reader = Execute(sql);
 
-                // 2: Make a sqlCommand object:
-                SqlCommand command = new SqlCommand(sql, connection);
-
-                // 3: Open the connection:
-                connection.Open();
-
-                // 4: Execute the insert command:
-                command.ExecuteNonQuery();
-
-                // 5: Close the connection when it is not needed anymore:
-                connection.Close();
+                // Close the connection when it is not needed anymore:
+                CloseConnection();
             }
             catch (ArgumentException e)
             {
@@ -113,20 +88,11 @@ namespace Nitrilon.DataAccess
             {
                 string sql = $"DELETE FROM Members WHERE MemberId = {memberId}";
 
-                // 1: Make a sqlConnection object:
-                SqlConnection connection = new SqlConnection(connectionString);
+                // Execute query:
+                SqlDataReader reader = Execute(sql);
 
-                // 2: Make a sqlCommand object:
-                SqlCommand command = new SqlCommand(sql, connection);
-
-                // 3: Open the connection:
-                connection.Open();
-
-                // 4: Execute the delete command:
-                command.ExecuteNonQuery();
-
-                // 5: Close the connection when it is not needed anymore:
-                connection.Close();
+                // Close the connection when it is not needed anymore:
+                CloseConnection();
             }
             catch (ArgumentException e)
             {
@@ -147,20 +113,11 @@ namespace Nitrilon.DataAccess
             {
                 string sql = $"UPDATE Members SET Name = '{member.Name}', PhoneNumber = '{member.PhoneNumber}', Email = '{member.Email}', Date = '{member.Date.ToString("yyyy-MM-dd")}', MembershipId = {member.MembershipId} WHERE MemberId = {memberId}";
 
-                // 1: Make a sqlConnection object:
-                SqlConnection connection = new SqlConnection(connectionString);
+                // Execute query:
+                SqlDataReader reader = Execute(sql);
 
-                // 2: Make a sqlCommand object:
-                SqlCommand command = new SqlCommand(sql, connection);
-
-                // 3: Open the connection:
-                connection.Open();
-
-                // 4: Execute the update command:
-                command.ExecuteNonQuery();
-
-                // 5: Close the connection when it is not needed anymore:
-                connection.Close();
+                // Close the connection when it is not needed anymore:
+                CloseConnection();
             }
             catch (ArgumentException e)
             {
