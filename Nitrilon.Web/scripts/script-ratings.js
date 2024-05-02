@@ -47,15 +47,6 @@ function fetchEvents()
           eventCard.addEventListener("click", function(OnClick)
           {
             fetchEventRatings(this.id);
-            // OnClick.preventDefault();
-            // // Set the eventId in localStorage:
-            // localStorage.setItem("eventId", this.id);
-            // window.x = this.id;
-            
-            // console.log("Event ID:", this.id);
-
-            // // Go to the smileys site:
-            // window.location.href = "./smileys.html";
           });
         }
       });

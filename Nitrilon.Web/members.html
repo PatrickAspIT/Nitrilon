@@ -18,13 +18,56 @@
   </header>
 
   <!-- Main Content Styling -->
-  <main>
-    <!-- HVAD JEG SKAL LAVE... -->
-
+  <main id="memberMain">
     <!-- 1. Se alle medlemmer og se hvilket type medlemskab de har, måske opdele dem efter medlemsskab, smid dem ind i en div baseret på medlemsskabet -->
-    <!-- 2. Tilføje nye medlemmer: Name, Date, MembershipId. -->
-    <!-- 3. Fjerne medlemmer: f.eks. baseret på memberId eller navn eller andet... -->
+    <section id="firstSection">
+      <button class="Buttons pointer" id="seeMembers">Se medlemmer</button>
+    </section>
+    <!-- 2. Tilføje nye medlemmer: Name (obligatorisk), PhoneNumber, Email, Date (obligatorisk), MembershipId (obligatorisk). -->
+    <section id="secondSection">
+      <h2>Tilføj venligst et nyt medlem:</h2>
+      <form id="addMemberForm">
+        <label for="name">Navn:</label>
+        <input type="text" id="name" name="name" required>
+        <label for="phoneNumber">Telefonnummer:</label>
+        <input type="tel" id="phoneNumber" name="phoneNumber">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email">
+        <label for="date">Dato:</label>
+        <input type="date" id="date" name="date" required>
+        <label for="membershipId">Medlemskab:</label>
+        <select id="membershipId" name="membershipId" required>
+          <option value="1">Aktiv</option>
+          <option value="2">Passiv</option>
+          <option value="3">Udgået</option>
+        </select>
+        <button class="Buttons pointer" type="submit">Tilføj medlem</button>
+      </form>
+    </section>
+    <!-- 3. Fjerne medlemmer: f.eks. baseret på memberId -->
+    <section id="thirdSection">
+      <h2>Fjern et medlem:</h2>
+      <form id="removeMemberForm">
+        <label for="memberId">Medlems ID:</label>
+        <input type="number" id="memberId" name="memberId" required>
+        <button class="Buttons pointer" type="submit">Fjern medlem</button>
+      </form>
+    </section>
     <!-- 4. Ændre medlemsskab imellem passiv, aktiv og udgået. -->
+    <section id="fourthSection">
+      <h2>Ændre medlemsskab:</h2>
+      <form id="changeMembershipForm">
+        <label for="memberId">Medlems ID:</label>
+        <input type="number" id="memberId" name="memberId" required>
+        <label for="membershipId">Medlemskab:</label>
+        <select id="membershipId" name="membershipId" required>
+          <option value="1">Aktiv</option>
+          <option value="2">Passiv</option>
+          <option value="3">Udgået</option>
+        </select>
+        <button class="Buttons pointer" type="submit">Ændre medlemsskab</button>
+      </form>
+    </section>
   </main>
   
 </body>

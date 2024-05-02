@@ -111,7 +111,7 @@ namespace Nitrilon.DataAccess
         {
             try
             {
-                string sql = $"UPDATE Members SET Name = '{member.Name}', PhoneNumber = '{member.PhoneNumber}', Email = '{member.Email}', Date = '{member.Date.ToString("yyyy-MM-dd")}', MembershipId = {member.MembershipId} WHERE MemberId = {memberId}";
+                string sql = $"UPDATE Members SET MembershipId = {member.MembershipId} WHERE MemberId = {memberId}";
 
                 // Execute query:
                 SqlDataReader reader = Execute(sql);
