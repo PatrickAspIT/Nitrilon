@@ -192,7 +192,7 @@ namespace Nitrilon.DataAccess
                 SqlDataReader reader = Execute(sql);
 
                 // 5: Retrieve data form the data reader:
-                if (reader.Read())
+                while (reader.Read())
                 {
                     int eventId = Convert.ToInt32(reader["EventId"]);
                     DateTime newDate = Convert.ToDateTime(reader["Date"]);
