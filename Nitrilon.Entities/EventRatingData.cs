@@ -30,6 +30,7 @@
         #endregion
 
         #region Methods
+        // Not used at the moment
         public (double horribleRatingPercentage, double badRatingPercentage, double neutralRatingPercentage, double goodRatingPercentage, double fantasticRatingPercentage) GetPercentages()
         {
             (double, double, double, double, double) percentages = default;
