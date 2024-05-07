@@ -4,7 +4,7 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>702</x>
+      <x>729</x>
       <y>180</y>
       <w>189</w>
       <h>135</h>
@@ -22,7 +22,7 @@ Email : nvarchar(128)
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>990</x>
+      <x>1017</x>
       <y>180</y>
       <w>180</w>
       <h>72</h>
@@ -37,7 +37,7 @@ MembershipId : int {PK}
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>882</x>
+      <x>909</x>
       <y>180</y>
       <w>126</w>
       <h>36</h>
@@ -50,7 +50,7 @@ m2=1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>693</x>
+      <x>720</x>
       <y>567</y>
       <w>333</w>
       <h>90</h>
@@ -66,7 +66,7 @@ m2=1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>702</x>
+      <x>729</x>
       <y>45</y>
       <w>189</w>
       <h>27</h>
@@ -77,7 +77,7 @@ m2=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>882</x>
+      <x>909</x>
       <y>45</y>
       <w>126</w>
       <h>36</h>
@@ -90,7 +90,7 @@ m2=1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>990</x>
+      <x>1017</x>
       <y>45</y>
       <w>180</w>
       <h>27</h>
@@ -101,7 +101,7 @@ m2=1</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>468</x>
+      <x>495</x>
       <y>126</y>
       <w>243</w>
       <h>27</h>
@@ -113,7 +113,7 @@ Mandatory columns are with *bold*</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>9</x>
+      <x>36</x>
       <y>180</y>
       <w>144</w>
       <h>99</h>
@@ -130,21 +130,21 @@ Description : ntext  = 'Dette event har endnu ingen beskrivelse'</panel_attribut
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>144</x>
+      <x>171</x>
       <y>171</y>
       <w>126</w>
       <h>45</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
-m1=*
-m2=1
+    <panel_attributes>lt=&lt;&lt;-
+m1=1
+m2=1..*
 </panel_attributes>
     <additional_attributes>10.0;20.0;120.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>252</x>
+      <x>279</x>
       <y>180</y>
       <w>144</w>
       <h>72</h>
@@ -159,21 +159,21 @@ EventRatingId : int {PK}
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>387</x>
+      <x>414</x>
       <y>171</y>
       <w>126</w>
       <h>45</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
-m1=*
-m2=1
+    <panel_attributes>lt=&lt;&lt;-
+m1=1
+m2=1..*
 </panel_attributes>
     <additional_attributes>120.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>495</x>
+      <x>522</x>
       <y>180</y>
       <w>180</w>
       <h>72</h>
@@ -188,7 +188,7 @@ RatingId : int {PK}
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>9</x>
+      <x>36</x>
       <y>45</y>
       <w>144</w>
       <h>27</h>
@@ -199,21 +199,21 @@ RatingId : int {PK}
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>144</x>
+      <x>171</x>
       <y>36</y>
       <w>126</w>
       <h>45</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
-m1=*
-m2=1
+    <panel_attributes>lt=&lt;&lt;-
+m1=1
+m2=1..*
 </panel_attributes>
     <additional_attributes>10.0;20.0;120.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>252</x>
+      <x>279</x>
       <y>45</y>
       <w>144</w>
       <h>27</h>
@@ -224,21 +224,21 @@ m2=1
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>387</x>
+      <x>414</x>
       <y>36</y>
       <w>126</w>
       <h>45</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
-m1=*
-m2=1
+    <panel_attributes>lt=&lt;&lt;-
+m1=1
+m2=1..*
 </panel_attributes>
     <additional_attributes>120.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>495</x>
+      <x>522</x>
       <y>45</y>
       <w>180</w>
       <h>27</h>
@@ -250,7 +250,7 @@ m2=1
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>144</x>
+      <x>171</x>
       <y>567</y>
       <w>324</w>
       <h>180</h>
@@ -273,7 +273,7 @@ m2=1
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>468</x>
+      <x>495</x>
       <y>450</y>
       <w>225</w>
       <h>117</h>
@@ -292,7 +292,7 @@ m2=1
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>459</x>
+      <x>486</x>
       <y>378</y>
       <w>243</w>
       <h>72</h>
@@ -307,7 +307,7 @@ protected, they can still access them</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>504</x>
+      <x>531</x>
       <y>0</y>
       <w>162</w>
       <h>27</h>
@@ -319,7 +319,7 @@ Relations between tables</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>720</x>
+      <x>747</x>
       <y>387</y>
       <w>90</w>
       <h>54</h>
@@ -333,7 +333,7 @@ Relations between tables</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>576</x>
+      <x>603</x>
       <y>558</y>
       <w>135</w>
       <h>72</h>
@@ -344,7 +344,7 @@ Relations between tables</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>459</x>
+      <x>486</x>
       <y>558</y>
       <w>126</w>
       <h>72</h>
@@ -355,7 +355,7 @@ Relations between tables</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>936</x>
+      <x>963</x>
       <y>288</y>
       <w>126</w>
       <h>63</h>
@@ -369,7 +369,7 @@ bg=yellow</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>378</x>
+      <x>405</x>
       <y>261</y>
       <w>126</w>
       <h>63</h>
@@ -382,7 +382,7 @@ bg=yellow</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>153</x>
+      <x>180</x>
       <y>261</y>
       <w>126</w>
       <h>63</h>
