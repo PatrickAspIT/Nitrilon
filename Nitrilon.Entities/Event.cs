@@ -33,7 +33,7 @@
         #region Properties
         public int Id
         {
-            get => id; // get { return id; }
+            get => id;
             set
             {
                 ArgumentOutOfRangeException.ThrowIfNegative(value);
@@ -46,7 +46,7 @@
 
         public DateTime Date
         {
-            get => date; // get { return date; }
+            get => date;
             set
             {
                 ArgumentOutOfRangeException.ThrowIfLessThan(value, EarliestPossibleEvent);
@@ -59,7 +59,7 @@
 
         public string Name
         {
-            get => name; // get { return name; } 
+            get => name;
             set
             {
                 ArgumentOutOfRangeException.ThrowIfNullOrWhiteSpace(value);
@@ -72,7 +72,7 @@
 
         public int Attendees
         {
-            get => attendees; // get { return attendees; } 
+            get => attendees;
             set
             {
                 ArgumentOutOfRangeException.ThrowIfLessThan(value, -1);
@@ -85,7 +85,7 @@
 
         public string Description
         {
-            get => description; // get { return description; } 
+            get => description;
             set
             {
                 if (description != value)

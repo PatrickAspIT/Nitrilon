@@ -12,13 +12,13 @@ Aktører:
 * Eventansvarlig: Den der skal have vist oversigterne over gæsternes bedømmelse.
 * Klargøringsansvarlig: Den der klargører devicet til at gæsterne kan rate eventet.
 
-01. En gæst skal kunne bedømme oplevelsen af et event, med valg af én værdi på en skala med tre niveauer.
-02. Gæsten skal have feedback efter indtastningen af bedømmelsen.
-03. Systemet skal automatisk klargøre til næste indtastning, efter en indtastning.
-04. Den eventansvarlige skal kunne vælge et event for at få vist antallet af bedømmelser i hver bedømmelsesniveau.
-05. Den klargøringsansvarlige skal få vist de events der kan vælges, når devicet skal klargøres til brug.
-06. De events der skal vises til den klargøringsansvarlige, er igangværende og og fremtidige events.
-07. Når den klargøringsansvarlige har valgt et event, skal systemet viderestille til bedømmelsessiden.
+01. Den eventansvarlige skal kunne vælge et event for at få vist antallet af bedømmelser i hver bedømmelsesniveau.
+02. Den klargøringsansvarlige skal få vist de events der kan vælges, når devicet skal klargøres til brug.
+03. De events der skal vises til den klargøringsansvarlige, er igangværende og og fremtidige events.
+04. Når den klargøringsansvarlige har valgt et event, skal systemet viderestille til bedømmelsessiden.
+05. En gæst skal kunne bedømme oplevelsen af et event, med valg af én værdi på en skala med fem niveauer.
+06. Gæsten skal have feedback efter indtastningen af bedømmelsen.
+07. Systemet skal automatisk klargøre til næste indtastning, efter en indtastning.
 
 ## Subsystem 02: Medlemshåndtering
 Aktører:
