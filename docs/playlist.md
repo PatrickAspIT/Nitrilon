@@ -76,3 +76,4 @@
 ## Hvad vi mangler...
  01. Giv mulighed for den EventAnsvarlige at oprette nyt event på hjemmesiden.
  02. Giv procentdel af bedømmelserne under rating-siden.
+ 03. Håndtere rollespilsgrupper.
