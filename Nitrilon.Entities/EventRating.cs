@@ -11,7 +11,7 @@
         #region Properties
         public int EventRatingId
         {
-            get => eventRatingId;  //get { return eventRatingId; }
+            get => eventRatingId;
             set
             {
                 if (eventRatingId != value)
@@ -23,7 +23,7 @@
 
         public int EventId
         {
-            get => eventId; //get { return eventId; }
+            get => eventId;
             set
             {
                 if (value <= 0)
@@ -36,7 +36,7 @@
 
         public int RatingId
         {
-            get => ratingId; //get { return ratingId; }
+            get => ratingId;
             set
             {
                 if (value < 0 || value > 5)
