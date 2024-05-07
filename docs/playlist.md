@@ -37,8 +37,18 @@
         01. JavaScript filerne kommunikerer med HTTP metoderne (f.eks. GET, POST, PUT, DELETE).
 
     * Arkitektur med Separation of Concerns: Modulær opbygning med klassebiblioteker og applikationer.
+
+        01. Opdele en applikation i seperate og selvstændige enheder, hvor hver enhed har en klar opgave eller ansvar.
+
     * API: endpoint (IP + port) og IIS'ens rolle
+
+        01. Endpoint: https://localhost:7268/api.
+        02. IIS: Hoster API-tjenester og kan håndtere HTTP protokoller. Fungerer som en bro mellem klient og API-tjeneste ved at videresende til det korrekte endepunkt. Hjælper med sikkerhed og godkendelse.
+
         * Controllere og deres action methods, herunder URI'en
+
+            01. EventController og EventRatingController bruger EventRepository. MemberController bruger MemberRepository.
+        
     * Data Access: Repository design pattern.
     * Database: SQL + tabeller, kolonner, rækker, PK, FK.
 
