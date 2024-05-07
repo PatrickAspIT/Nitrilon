@@ -148,8 +148,8 @@ function addMember(event)
       return response.json(); // Gets a syntax error here, but it works.
     })
     .then(data => {
-      console.log(data);
-      console.log("Worked");
+      //console.log(data);
+      //console.log("Worked");
       
       let changeText = document.getquerySelector("#secondSection h2");
       changeText.textContent = "Medlem tilføjet!";
@@ -197,8 +197,8 @@ function removeMember(event)
       return response.json(); // Gets a syntax error here, but it works.
     })
     .then(data => {
-      console.log(data);
-      console.log("Worked");
+      //console.log(data);
+      //console.log("Worked");
 
       let changeText = document.getquerySelector("#thirdSection h2");
       changeText.textContent = "Medlem fjernet!";
@@ -251,8 +251,8 @@ function updateMembership(event)
       return response.json(); // Gets a syntax error here, but it works.
     })
     .then(data => {
-      console.log(data);
-      console.log("Worked");
+      //console.log(data);
+      //console.log("Worked");
 
       let changeText = document.getquerySelector("#fourthSection h2");
       changeText.textContent = "Medlemskab opdateret!";
